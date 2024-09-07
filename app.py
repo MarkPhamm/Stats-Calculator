@@ -25,18 +25,22 @@ with col2:
 # Sidebar with radio buttons
 option = st.sidebar.radio(
     "Choose an option",
-    ["MOE", "Normal", "Triangular", "Uniform"]
+    ["Binomial", "Normal", "Triangular", "Uniform", "MOE"]
 )
 
 # Main content based on the selected option
-if option == "MOE":
-    moe.moe.main()
+if option == "Binomial":
+    distributions.binomial.main()
 
 elif option == "Normal":
     distributions.normal.main()
 
 elif option == "Triangular":
     distributions.triangular.main()
-# Option for the second "Normal"
+
 elif option == "Uniform":
     distributions.uniform.main()
+
+elif option == "MOE":
+    moe.moe.main()
+
