@@ -43,6 +43,11 @@ def main():
     # Streamlit App
     st.title("Binomial Distribution Calculator")
 
+    # Display the LaTeX formula for the binomial distribution
+    st.latex(r"""
+    P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k}
+    """)
+
     # User inputs for n, p (binomial distribution parameters)
     n = st.number_input("Enter the Number of Trials (n)", value=10, step=1, min_value=1)
     p = st.number_input("Enter the Probability of Success (p)", value=0.5, step=0.01, min_value=0.0, max_value=1.0)
