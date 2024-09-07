@@ -71,6 +71,25 @@ def main():
 
     st.success(f"Probability P({s_min} <= X <= {s_max}): {p_range:.4f}")
 
+    # Let user input multiple values of x to calculate P(X = x)
+    st.header("Calculate P(X = x) for specific values")
+    x_values_input = st.text_input("Enter values of x (separated by commas)", value="0, 1, 2")
+    
+    # Convert the user input into a list of integers
+    try:
+        x_values = [int(x.strip()) for x in x_values_input.split(",")]
+        valid_x_values = [x for x in x_values if 0 <= x <= n]  # Ensure x values are within valid range
+        
+        if len(valid_x_values) > 0:
+            # Display the probabilities for the input x values
+            for x in valid_x_values:
+                prob = binom.pmf(x, n, p)
+                st.write(f"P(X = {x}): {prob:.4f}")
+        else:
+            st.warning("Please enter valid x values between 0 and n.")
+    except ValueError:
+        st.error("Invalid input for x values. Please enter integers separated by commas.")
+    
     # Plot the binomial distribution with the range of successes highlighted
     plot_binomial_distribution(n, p, s_min, s_max)
 
