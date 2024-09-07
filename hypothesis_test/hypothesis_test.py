@@ -42,7 +42,7 @@ def main():
     st.title("Hypothesis Testing Calculator")
 
     # User selects between mean and proportion
-    test_type = st.selectbox("Select Test Type:", ["Mean", "Proportion"])
+    test_type = st.sidebar.radio("Select Test Type:", ["Mean", "Proportion"])
 
     # Select test options
     if test_type == "Mean":
