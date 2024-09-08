@@ -1,11 +1,17 @@
 import streamlit as st
 
+import distributions.discrete.probability
 import moe.moe
 
-import distributions.binomial
-import distributions.normal
-import distributions.triangular
-import distributions.uniform
+import distributions.discrete.binomial
+import distributions.continuous.normal
+import distributions.continuous.triangular
+import distributions.continuous.uniform
+
+import hypothesis_test.hypothesis_test
+
+import theorem.clt
+import theorem.llon
 
 
 import streamlit as st
@@ -20,27 +26,69 @@ with col1:
 # Display header and text in the second column
 with col2:
     st.header("Statistic Calculator")
-    st.text("By Minh (Mark) Pham")
+    st.markdown("By [Minh (Mark) Pham](https://www.linkedin.com/in/minhbphamm/)")
 
-# Sidebar with radio buttons
-option = st.sidebar.radio(
-    "Choose an option",
-    ["Binomial", "Normal", "Triangular", "Uniform", "MOE"]
+# Sidebar with grouped radio buttons
+st.sidebar.header("Distribution Types")
+
+# Create radio buttons for each group
+distribution_type = st.sidebar.radio(
+    "Choose a topic",
+    ("Discrete Distributions", "Continuous Distributions", "MOE", "Hypothesis Test", "Theorem")
 )
+
+option = None
+
+# Based on the distribution type selected, show the corresponding options
+if distribution_type == "Discrete Distributions":
+    option = st.sidebar.radio(
+        "Discrete Distributions",
+        ["Binomial", "Probability"]
+    )
+elif distribution_type == "Continuous Distributions":
+    option = st.sidebar.radio(
+        "Continuous Distributions",
+        ["Normal", "Triangular", "Uniform"]
+    )
+
+elif distribution_type == "MOE":
+    option = "MOE"
+
+elif distribution_type == "Hypothesis Test":
+    option = "Hypothesis Test"
+
+elif distribution_type == "Theorem":
+    option = st.sidebar.radio(
+        "Theorem",
+        ["Central Limit Theorem", "Law of the Large number"]
+    )
+
+
 
 # Main content based on the selected option
 if option == "Binomial":
-    distributions.binomial.main()
+    distributions.discrete.binomial.main()
+
+if option == "Probability":
+    distributions.discrete.probability.main()
 
 elif option == "Normal":
-    distributions.normal.main()
+    distributions.continuous.normal.main()
 
 elif option == "Triangular":
-    distributions.triangular.main()
+    distributions.continuous.triangular.main()
 
 elif option == "Uniform":
-    distributions.uniform.main()
+    distributions.continuous.uniform.main()
 
 elif option == "MOE":
     moe.moe.main()
 
+elif option == "Hypothesis Test":
+    hypothesis_test.hypothesis_test.main()
+
+elif option == "Central Limit Theorem":
+    theorem.clt.main()
+
+elif option == "Law of the Large number":
+    theorem.llon.main()
