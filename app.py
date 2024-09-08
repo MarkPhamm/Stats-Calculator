@@ -1,6 +1,7 @@
 import streamlit as st
 
 import distributions.discrete.probability
+import hypothesis_test.chi_square
 import moe.moe
 
 import distributions.discrete.binomial
@@ -12,6 +13,9 @@ import hypothesis_test.hypothesis_test
 
 import theorem.clt
 import theorem.llon
+
+import ml.regression.linear_reg.gradient_descent
+import ml.regression.linear_reg.linear_reg
 
 
 import streamlit as st
@@ -34,10 +38,11 @@ st.sidebar.header("Distribution Types")
 # Create radio buttons for each group
 distribution_type = st.sidebar.radio(
     "Choose a topic",
-    ("Discrete Distributions", "Continuous Distributions", "MOE", "Hypothesis Test", "Theorem")
+    ("Discrete Distributions", "Continuous Distributions", "MOE", "Hypothesis Test", "Chi Square", "Theorem", "Machine Learning")
 )
 
 option = None
+machine_learning_type = None
 
 # Based on the distribution type selected, show the corresponding options
 if distribution_type == "Discrete Distributions":
@@ -57,13 +62,25 @@ elif distribution_type == "MOE":
 elif distribution_type == "Hypothesis Test":
     option = "Hypothesis Test"
 
+elif distribution_type == "Chi Square":
+    option = "Chi Square"
+
 elif distribution_type == "Theorem":
     option = st.sidebar.radio(
         "Theorem",
         ["Central Limit Theorem", "Law of the Large number"]
     )
 
+elif distribution_type == "Machine Learning":
+    machine_learning_type = st.sidebar.radio(
+        "Machine Learning",
+        ["Continuous", "Classification"]
+    )
 
+if machine_learning_type == "Continuous":
+    option = st.sidebar.radio(
+        "Continuous ML model",
+        ["Gradient Descent", "Linear Regression"])
 
 # Main content based on the selected option
 if option == "Binomial":
@@ -87,8 +104,20 @@ elif option == "MOE":
 elif option == "Hypothesis Test":
     hypothesis_test.hypothesis_test.main()
 
+elif option == "Chi Square":
+    hypothesis_test.chi_square.main()
+
 elif option == "Central Limit Theorem":
     theorem.clt.main()
 
 elif option == "Law of the Large number":
     theorem.llon.main()
+
+elif option == "Gradient Descent":
+    ml.regression.linear_reg.gradient_descent.main()
+
+elif option == "Linear Regression":
+    ml.regression.linear_reg.linear_reg.main()
+
+
+    
