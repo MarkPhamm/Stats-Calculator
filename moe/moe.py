@@ -63,6 +63,11 @@ def main():
     # Streamlit App
     st.title("Margin of Error Calculator with Interpretation and Plot")
 
+    # Display LaTeX formulas at the top
+    st.latex(r"\text{MOE for Mean (known } \sigma\text{)} = Z \cdot \frac{\sigma}{\sqrt{n}}")
+    st.latex(r"\text{MOE for Mean (unknown } \sigma\text{)} = t \cdot \frac{s}{\sqrt{n}}")
+    st.latex(r"\text{MOE for Proportion} = Z \cdot \sqrt{\frac{p(1 - p)}{n}}")
+
     # User selects between mean and proportion
     calculation_type = st.selectbox("Calculate MOE for:", ["Mean", "Proportion"])
 
@@ -82,7 +87,11 @@ def main():
             std_error = std_dev / math.sqrt(sample_size)
 
             moe = calculate_moe_mean_known(z_score, std_dev, sample_size)
-            st.success(f"The Margin of Error (MOE) is: {moe:.4f}")
+
+            # Display Standard Error, MOE, and Confidence Interval
+            st.success(f"Standard Error: {std_error:.4f}")
+            st.success(f"Margin of Error (MOE): {moe:.4f}")
+            st.success(f"Confidence Interval: ({sample_mean - moe:.4f}, {sample_mean + moe:.4f})")
             
             # Plot the normal distribution with MOE and center
             plot_normal_distribution_with_moe(sample_mean, moe, std_error, confidence_level)
@@ -98,7 +107,11 @@ def main():
             std_error = sample_std_dev / math.sqrt(sample_size)
             
             moe = calculate_moe_mean_unknown(t_score, sample_std_dev, sample_size)
-            st.success(f"The Margin of Error (MOE) is: {moe:.4f}")
+
+            # Display Standard Error, MOE, and Confidence Interval
+            st.success(f"Standard Error: {std_error:.4f}")
+            st.success(f"Margin of Error (MOE): {moe:.4f}")
+            st.success(f"Confidence Interval: ({sample_mean - moe:.4f}, {sample_mean + moe:.4f})")
 
             # Plot the normal distribution with MOE and center
             plot_normal_distribution_with_moe(sample_mean, moe, std_error, confidence_level)
@@ -113,7 +126,11 @@ def main():
         std_error = math.sqrt((proportion * (1 - proportion)) / sample_size)
         
         moe = calculate_moe_proportion(z_score, proportion, sample_size)
-        st.success(f"The Margin of Error (MOE) is: {moe:.4f}")
+
+        # Display Standard Error, MOE, and Confidence Interval
+        st.success(f"Standard Error: {std_error:.4f}")
+        st.success(f"Margin of Error (MOE): {moe:.4f}")
+        st.success(f"Confidence Interval: ({proportion - moe:.4f}, {proportion + moe:.4f})")
 
         # Plot the normal distribution with MOE and center
         plot_normal_distribution_with_moe(proportion, moe, std_error, confidence_level)

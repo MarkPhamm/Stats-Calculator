@@ -45,6 +45,10 @@ def main():
     # Streamlit App
     st.title("Triangular Distribution Calculator")
 
+    # LaTeX formulas for Triangular Distribution mean and variance
+    st.latex(r"\text{Mean} = \frac{a + b + c}{3}")
+    st.latex(r"\text{Variance} = \frac{a^2 + b^2 + c^2 - ab - ac - bc}{18}")
+
     # User inputs for a, b, c (triangular distribution parameters)
     a = st.number_input("Enter the Lower Limit (a)", value=0.0, step=0.1)
     b = st.number_input("Enter the Upper Limit (b)", value=1.0, step=0.1)

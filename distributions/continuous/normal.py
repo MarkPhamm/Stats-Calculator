@@ -50,6 +50,9 @@ def main():
         st.title("Normal Distribution")
         st.header("Calculate area to the left and right of x")
 
+        # LaTeX formula for Normal CDF
+        st.latex(r"\text{CDF}(x) = P(X \leq x) = \int_{-\infty}^{x} \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(t-\mu)^2}{2\sigma^2}} dt")
+
         # User inputs for mean and standard deviation
         mean = st.number_input("Enter the Mean (μ)", value=0.0, step=0.1)
         std_dev = st.number_input("Enter the Standard Deviation (σ)", value=1.0, step=0.1)
@@ -100,6 +103,9 @@ def main():
         # Streamlit App
         st.title("Inverse Normal Distribution")
         st.header("Find x from Area under Normal Distribution")
+
+        # LaTeX formula for Inverse Normal CDF
+        st.latex(r"x = \text{CDF}^{-1}(p) = \mu + \sigma \cdot \Phi^{-1}(p)")
 
         # User inputs for mean and standard deviation
         mean = st.number_input("Enter the Mean (μ)", value=0.0, step=0.1)

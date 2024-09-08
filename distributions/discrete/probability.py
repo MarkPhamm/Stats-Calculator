@@ -19,7 +19,12 @@ def calculate_statistics(df):
     return ex, varx, stdx
 
 def main():
-    st.title("Custom Probability Distribution Calculator")
+    st.title("Probability Distribution Calculator")
+
+    # Display LaTeX formulas for E(X) and Var(X)
+    st.subheader("Formulas")
+    st.latex(r"E(X) = \sum_{i=1}^{n} X_i \cdot P(X_i)")
+    st.latex(r"\text{Var}(X) = \sum_{i=1}^{n} (X_i - E(X))^2 \cdot P(X_i)")
 
     # Initialize the session state
     if 'df' not in st.session_state:

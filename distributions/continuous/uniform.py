@@ -41,6 +41,10 @@ def main():
     # Streamlit App
     st.title("Uniform Distribution Calculator")
 
+    # Display LaTeX formulas for mean and variance
+    st.latex(r"\text{Mean: } \mu = \frac{a + b}{2}")
+    st.latex(r"\text{Variance: } \sigma^2 = \frac{(b - a)^2}{12}")
+
     # User inputs for a, b (uniform distribution parameters)
     a = st.number_input("Enter the Lower Limit (a)", value=0.0, step=0.1)
     b = st.number_input("Enter the Upper Limit (b)", value=1.0, step=0.1)
@@ -69,7 +73,7 @@ def main():
         st.write(f"Cumulative Probability P(X >= x): {p_greater_equal_x:.4f}")
 
         # Plot the uniform distribution with area to the left of x
-        plot_uniform_distribution(a, b, x)\
-        
+        plot_uniform_distribution(a, b, x)
+
 if __name__ == "__main__":
     main()
