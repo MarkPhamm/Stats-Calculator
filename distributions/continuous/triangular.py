@@ -48,6 +48,14 @@ def main():
     # LaTeX formulas for Triangular Distribution mean and variance
     st.latex(r"\text{Mean} = \frac{a + b + c}{3}")
     st.latex(r"\text{Variance} = \frac{a^2 + b^2 + c^2 - ab - ac - bc}{18}")
+    st.latex(r"""
+    P(x \leq X \leq y) = 
+    \begin{cases}
+    \int_{x}^{y} \frac{2(t-a)}{(b-a)(c-a)} \, dt & \text{for } x \leq c \leq y \\
+    \int_{x}^{y} \frac{2(b-t)}{(b-a)(b-c)} \, dt & \text{for } c < x \leq y
+    \end{cases}
+    """)
+
 
     # User inputs for a, b, c (triangular distribution parameters)
     a = st.number_input("Enter the Lower Limit (a)", value=0.0, step=0.1)
