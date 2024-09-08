@@ -41,6 +41,16 @@ def main():
     # Streamlit App
     st.title("Hypothesis Testing Calculator")
 
+    st.latex(r"""
+    \text{Test Statistic} = \frac{\bar{x} - \mu_0}{\frac{\sigma}{\sqrt{n}}} \quad \text{(for Z-test, } \sigma \text{ known)}
+    """)
+    st.latex(r"""
+    \text{Test Statistic} = \frac{\bar{x} - \mu_0}{\frac{s}{\sqrt{n}}} \quad \text{(for t-test, } \sigma \text{ unknown)}
+    """)
+    st.latex(r"""
+    \text{Test Statistic (Proportion)} = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1 - p_0)}{n}}}
+    """)
+
     # User selects between mean and proportion
     test_type = st.sidebar.radio("Select Test Type:", ["Mean", "Proportion"])
 
@@ -112,9 +122,9 @@ def main():
 
     # Display results
     st.subheader("Results:")
-    st.write(f"Test Statistic: {test_statistic:.4f}")
-    st.write(f"Critical Value: {critical_value:.4f}")
-    st.write(f"p-value: {p_value:.4f}")
+    st.success(f"Test Statistic: {test_statistic:.4f}")
+    st.success(f"Critical Value: {critical_value:.4f}")
+    st.success(f"p-value: {p_value:.4f}")
 
     # Plot the distribution
     plot_distribution(distribution, test_statistic, critical_value, hypothesis_type, df)
