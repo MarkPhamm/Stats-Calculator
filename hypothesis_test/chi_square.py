@@ -42,6 +42,16 @@ def main():
     if test_type == "Goodness of Fit":
         st.subheader("Chi-Square Goodness of Fit Test")
 
+        st.latex(r"""
+        \text{Null Hypothesis (H₀)}: \text{The observed distribution fits the expected distribution}
+        """)
+        st.latex(r"""
+        \text{Alternative Hypothesis (H₁)}: \text{The observed distribution does not fit the expected distribution}
+        """)
+        st.latex(r"""
+        \text{Test Statistic (Chi-Square)}: \chi^2 = \sum \frac{(O_i - E_i)^2}{E_i}
+        """)
+
         # Input observed and expected frequencies
         st.write("Enter the observed and expected frequencies for the Goodness of Fit test.")
         num_categories = st.number_input("Number of categories", min_value=1, value=3, step=1)
@@ -63,8 +73,12 @@ def main():
                     st.error("Length of observed and expected frequencies must be the same.")
                 else:
                     chi2_stat, p_value = chi_square_goodness_of_fit(observed, expected)
-                    st.write(f"Chi-Square Statistic: {chi2_stat:.4f}")
-                    st.write(f"P-Value: {p_value:.4f}")
+                    
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        st.write(f"Chi-Square Statistic: {chi2_stat:.4f}")
+                    with col2:
+                        st.write(f"P-Value: {p_value:.4f}")
 
                     # Null and Alternative Hypotheses
                     st.write("### Hypotheses:")
@@ -87,6 +101,16 @@ def main():
     elif test_type == "Test of Independence":
         st.subheader("Chi-Square Test of Independence")
 
+        st.latex(r"""
+        \text{Null Hypothesis (H₀)}: \text{The two variables are independent}
+        """)
+        st.latex(r"""
+        \text{Alternative Hypothesis (H₁)}: \text{The two variables are not independent}
+        """)
+        st.latex(r"""
+        \text{Test Statistic (Chi-Square)}: \chi^2 = \sum \frac{(O_{ij} - E_{ij})^2}{E_{ij}}
+        """)
+
         # Input contingency table
         st.write("Enter the contingency table for the Test of Independence.")
         num_rows = st.number_input("Number of rows", min_value=2, value=3, step=1)
@@ -101,11 +125,16 @@ def main():
             else:
                 contingency_table = contingency_table.values
                 chi2_stat, p_value, dof, expected = chi_square_test_of_independence(contingency_table)
-                st.write(f"Chi-Square Statistic: {chi2_stat:.4f}")
-                st.write(f"P-Value: {p_value:.4f}")
-                st.write(f"Degrees of Freedom: {dof}")
-                st.write("Expected Frequencies:")
-                st.dataframe(expected)
+                col1, col2 = st.columns(2)
+
+                with col1:
+                    st.write(f"Chi-Square Statistic: {chi2_stat:.4f}")
+                    st.write(f"P-Value: {p_value:.4f}")
+
+                with col2:
+                    st.write(f"Degrees of Freedom: {dof}")
+                    st.write("Expected Frequencies:")
+                st.dataframe(expected, use_container_width=True)
 
                 # Null and Alternative Hypotheses
                 st.write("### Hypotheses:")
