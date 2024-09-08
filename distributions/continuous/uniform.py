@@ -44,6 +44,10 @@ def main():
     # Display LaTeX formulas for mean and variance
     st.latex(r"\text{Mean: } \mu = \frac{a + b}{2}")
     st.latex(r"\text{Variance: } \sigma^2 = \frac{(b - a)^2}{12}")
+    st.latex(r"P(a \leq X \leq b) = \int_{a}^{b} \frac{1}{b-a} \, dx = \frac{b - a}{b - a} = 1")
+    st.latex(r"P(x \leq X \leq y) = \int_{x}^{y} \frac{1}{b-a} \, dt = \frac{y - x}{b - a}")
+
+
 
     # User inputs for a, b (uniform distribution parameters)
     a = st.number_input("Enter the Lower Limit (a)", value=0.0, step=0.1)
