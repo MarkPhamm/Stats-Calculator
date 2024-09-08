@@ -61,7 +61,7 @@ def main():
         st.pyplot(fig)
 
     # Streamlit App
-    st.title("Margin of Error Calculator with Interpretation and Plot")
+    st.title("Margin of Error Calculator")
 
     # Display LaTeX formulas at the top
     st.latex(r"\text{MOE for Mean (known } \sigma\text{)} = Z \cdot \frac{\sigma}{\sqrt{n}}")
