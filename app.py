@@ -29,7 +29,7 @@ with col1:
 
 # Display header and text in the second column
 with col2:
-    st.header("Statistic Calculator")
+    st.header("Statistics Calculator")
     st.markdown("By [Minh (Mark) Pham](https://www.linkedin.com/in/minhbphamm/)")
 
 # Sidebar with grouped radio buttons
@@ -38,7 +38,7 @@ st.sidebar.header("Distribution Types")
 # Create radio buttons for each group
 distribution_type = st.sidebar.radio(
     "Choose a topic",
-    ("Discrete Distributions", "Continuous Distributions", "MOE", "Hypothesis Test", "Chi Square", "Theorem", "Machine Learning")
+    ("Discrete Distributions", "Continuous Distributions", "Margin of Error", "Hypothesis Test", "Chi Square", "Theorem", "Machine Learning")
 )
 
 option = None
@@ -56,7 +56,7 @@ elif distribution_type == "Continuous Distributions":
         ["Normal", "Triangular", "Uniform"]
     )
 
-elif distribution_type == "MOE":
+elif distribution_type == "Margin of Error":
     option = "MOE"
 
 elif distribution_type == "Hypothesis Test":
