@@ -22,7 +22,6 @@ def main():
     st.title("Probability Distribution Calculator")
 
     # Display LaTeX formulas for E(X) and Var(X)
-    st.subheader("Formulas")
     st.latex(r"E(X) = \sum_{i=1}^{n} X_i \cdot P(X_i)")
     st.latex(r"\text{Var}(X) = \sum_{i=1}^{n} (X_i - E(X))^2 \cdot P(X_i)")
 
