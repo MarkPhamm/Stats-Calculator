@@ -1,7 +1,6 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
-import time
 
 # Gradient Descent Algorithm for Linear Regression
 def gradient_descent(X, y, learning_rate=0.01, iterations=100):
@@ -75,9 +74,13 @@ def main():
     # Initialize the plot in Streamlit (create a single placeholder for the plot)
     plot_placeholder = st.pyplot(fig)
 
+    # User inputs for gradient descent
+    learning_rate = st.slider("Select Learning Rate", min_value=0.001, max_value=0.1, value=0.01, step=0.001)
+    iterations = st.slider("Select Number of Iterations", min_value=1, max_value=100, value=50, step=1)
+
     if st.button("Run Gradient Descent"):
         # Run gradient descent
-        history, cost_history = gradient_descent(X, y)
+        history, cost_history = gradient_descent(X, y, learning_rate, iterations)
 
         # Loop through the gradient descent history to update the line and loss function
         for i in range(len(history)):
@@ -94,6 +97,10 @@ def main():
 
             # Redraw the plot (single plot update)
             plot_placeholder.pyplot(fig)
+
+        # Display the final loss
+        final_loss = cost_history[-1]
+        st.success(f"Final Loss: {final_loss:.4f}")
 
     st.markdown("""
     - **y = mx + b**: Linear regression model.
