@@ -47,8 +47,10 @@ def main():
             st.pyplot(fig)
 
         # Streamlit App
-        st.title("Normal Distribution")
-        st.header("Calculate area to the left and right of x")
+        st.title("Normal Distribution Calculator")
+
+        # LaTeX formula for Normal PDF
+        st.latex(r"\text{PDF}(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}")
 
         # LaTeX formula for Normal CDF
         st.latex(r"\text{CDF}(x) = P(X \leq x) = \int_{-\infty}^{x} \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(t-\mu)^2}{2\sigma^2}} dt")
@@ -102,7 +104,6 @@ def main():
 
         # Streamlit App
         st.title("Inverse Normal Distribution")
-        st.header("Find x from Area under Normal Distribution")
 
         # LaTeX formula for Inverse Normal CDF
         st.latex(r"x = \text{CDF}^{-1}(p) = \mu + \sigma \cdot \Phi^{-1}(p)")
@@ -121,7 +122,7 @@ def main():
         x = stats.norm.ppf(proportion_left, loc=mean, scale=std_dev)
 
         # Display the calculated x value
-        st.write(f"The value of x such that {area_left:.2f}% of the distribution is to the left is: {x:.4f}")
+        st.success(f"The value of x such that {area_left:.2f}% of the distribution is to the left is: {x:.4f}")
 
         # Plot the normal distribution and highlight the area to the left of x
         plot_normal_distribution_with_x(mean, std_dev, x)
