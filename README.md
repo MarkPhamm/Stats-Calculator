@@ -1,4 +1,8 @@
 # Statistic Calculator App
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9006cf8f-1e73-4299-a713-5f5cfa06d84f" width="250"/>
+  <img src="https://github.com/user-attachments/assets/bb628bdb-bbdd-4677-87a3-9e8d1b8f5e6b" width="250"/>
+</p>
 
 ## Overview
 [Click here to access the app](https://stats-calculator.streamlit.app/)
