@@ -17,6 +17,8 @@ import theorem.llon
 import ml.regression.linear_reg.gradient_descent
 import ml.regression.linear_reg.linear_reg
 
+import ml.others.kmeans
+
 
 import streamlit as st
 
@@ -74,13 +76,18 @@ elif distribution_type == "Theorem":
 elif distribution_type == "Machine Learning":
     machine_learning_type = st.sidebar.radio(
         "Machine Learning",
-        ["Continuous", "Classification"]
+        ["Continuous", "Classification", "Others"]
     )
 
 if machine_learning_type == "Continuous":
     option = st.sidebar.radio(
         "Continuous ML model",
         ["Gradient Descent", "Linear Regression"])
+
+elif machine_learning_type == "Others":
+    option = st.sidebar.radio(
+        "Others ML model",
+        ["Kmeans Clustering"])
 
 # Main content based on the selected option
 if option == "Binomial":
@@ -118,6 +125,10 @@ elif option == "Gradient Descent":
 
 elif option == "Linear Regression":
     ml.regression.linear_reg.linear_reg.main()
+
+elif option == "Kmeans Clustering":
+    ml.others.kmeans.main()
+
 
 
     
