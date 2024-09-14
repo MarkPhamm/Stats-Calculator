@@ -1,26 +1,51 @@
 import streamlit as st
 
+import theory.vocab
+import theory.vocab
+
+import theorem.clt
+import theorem.llon
+
 import distributions.discrete.probability
-import hypothesis_test.chi_square
+import distributions.discrete.binomial
+
 import moe.moe
 
-import distributions.discrete.binomial
 import distributions.continuous.normal
 import distributions.continuous.triangular
 import distributions.continuous.uniform
 
 import hypothesis_test.hypothesis_test
-
-import theorem.clt
-import theorem.llon
+import hypothesis_test.chi_square
 
 import ml.regression.linear_reg.gradient_descent
 import ml.regression.linear_reg.linear_reg
 
 import ml.others.kmeans
 
-
 import streamlit as st
+
+st.set_page_config(
+    page_title="Streamlit Statistics Calculator",
+    page_icon="🧊",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://www.linkedin.com/in/minhbphamm/',
+        'Report a bug': "https://www.linkedin.com/in/minhbphamm/",
+        'About': "# This an comprehensive Statistics Calculator"
+    }
+)
+# Function to add custom CSS
+def add_custom_css():
+    st.markdown("""
+        <style>
+        h1, h2 {
+            color: red !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+
+add_custom_css()
 
 # Create a two-column layout
 col1, col2 = st.columns(2)
@@ -34,24 +59,32 @@ with col2:
     st.header("Statistics Calculator")
     st.markdown("By [Minh (Mark) Pham](https://www.linkedin.com/in/minhbphamm/)")
 
+
 # Sidebar with grouped radio buttons
 st.sidebar.header("Distribution Types")
 
 # Create radio buttons for each group
 distribution_type = st.sidebar.radio(
     "Choose a topic",
-    ("Discrete Distributions", "Continuous Distributions", "Margin of Error", "Hypothesis Test", "Chi Square", "Theorem", "Machine Learning")
+    ("Theory", "Theorem", "Discrete Distributions", "Continuous Distributions", "Margin of Error", "Hypothesis Test", "Chi Square", "Machine Learning")
 )
 
 option = None
 machine_learning_type = None
 
 # Based on the distribution type selected, show the corresponding options
-if distribution_type == "Discrete Distributions":
+if distribution_type == "Theory":
+    option = st.sidebar.radio(
+        "Discrete Distributions",
+        ["Vocabulary", "Chart Principles"]
+    )
+
+elif distribution_type == "Discrete Distributions":
     option = st.sidebar.radio(
         "Discrete Distributions",
         ["Binomial", "Probability"]
     )
+
 elif distribution_type == "Continuous Distributions":
     option = st.sidebar.radio(
         "Continuous Distributions",
@@ -90,10 +123,13 @@ elif machine_learning_type == "Others":
         ["Kmeans Clustering"])
 
 # Main content based on the selected option
-if option == "Binomial":
+if option == "Vocabulary":
+    theory.vocab.main()
+
+elif option == "Binomial":
     distributions.discrete.binomial.main()
 
-if option == "Probability":
+elif option == "Probability":
     distributions.discrete.probability.main()
 
 elif option == "Normal":
@@ -128,6 +164,8 @@ elif option == "Linear Regression":
 
 elif option == "Kmeans Clustering":
     ml.others.kmeans.main()
+
+
 
 
 
