@@ -6,6 +6,8 @@ import theory.vocab
 import theorem.clt
 import theorem.llon
 
+import probability.probability
+
 import distributions.discrete.probability
 import distributions.discrete.binomial
 
@@ -64,49 +66,52 @@ with col2:
 st.sidebar.header("Distribution Types")
 
 # Create radio buttons for each group
-distribution_type = st.sidebar.radio(
+topic = st.sidebar.radio(
     "Choose a topic",
-    ("Theory", "Theorem", "Discrete Distributions", "Continuous Distributions", "Margin of Error", "Hypothesis Test", "Chi Square", "Machine Learning")
+    ("Theory", "Theorem", "Probability", "Discrete Distributions", "Continuous Distributions", "Margin of Error", "Hypothesis Test", "Chi Square", "Machine Learning")
 )
 
 option = None
 machine_learning_type = None
 
 # Based on the distribution type selected, show the corresponding options
-if distribution_type == "Theory":
+if topic == "Theory":
     option = st.sidebar.radio(
         "Discrete Distributions",
         ["Vocabulary", "Chart Principles"]
     )
 
-elif distribution_type == "Discrete Distributions":
+elif topic == "Discrete Distributions":
     option = st.sidebar.radio(
         "Discrete Distributions",
         ["Binomial", "Probability"]
     )
 
-elif distribution_type == "Continuous Distributions":
+elif topic == "Continuous Distributions":
     option = st.sidebar.radio(
         "Continuous Distributions",
         ["Normal", "Triangular", "Uniform"]
     )
 
-elif distribution_type == "Margin of Error":
+elif topic == "Probability":
+    option = "Probability"
+
+elif topic == "Margin of Error":
     option = "MOE"
 
-elif distribution_type == "Hypothesis Test":
+elif topic == "Hypothesis Test":
     option = "Hypothesis Test"
 
-elif distribution_type == "Chi Square":
+elif topic == "Chi Square":
     option = "Chi Square"
 
-elif distribution_type == "Theorem":
+elif topic == "Theorem":
     option = st.sidebar.radio(
         "Theorem",
         ["Central Limit Theorem", "Law of the Large number"]
     )
 
-elif distribution_type == "Machine Learning":
+elif topic == "Machine Learning":
     machine_learning_type = st.sidebar.radio(
         "Machine Learning",
         ["Continuous", "Classification", "Others"]
@@ -130,7 +135,7 @@ elif option == "Binomial":
     distributions.discrete.binomial.main()
 
 elif option == "Probability":
-    distributions.discrete.probability.main()
+    probability.probability.main()
 
 elif option == "Normal":
     distributions.continuous.normal.main()
