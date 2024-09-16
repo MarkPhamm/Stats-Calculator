@@ -328,7 +328,7 @@ def main():
         Explore different types of charts categorized into four sections: Distribution, Comparison, Composition, and Relationships. 
         Each section provides examples and tips for choosing the right chart based on your data and the story you want to tell.
     """)
-    st.image('theory/charts.png')
+    st.image('charts.png')
 
     # Distribution Section
     st.header("1. Distribution Charts")
