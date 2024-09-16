@@ -1,5 +1,6 @@
 import streamlit as st
 
+import theory.chart
 import theory.vocab
 import theory.vocab
 
@@ -130,6 +131,9 @@ elif machine_learning_type == "Others":
 # Main content based on the selected option
 if option == "Vocabulary":
     theory.vocab.main()
+
+if option == "Chart Principles":
+    theory.chart.main()
 
 elif option == "Binomial":
     distributions.discrete.binomial.main()
