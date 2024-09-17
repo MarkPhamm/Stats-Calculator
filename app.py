@@ -135,11 +135,14 @@ if option == "Vocabulary":
 if option == "Chart Principles":
     theory.chart.main()
 
+elif option == "Probability":
+    probability.probability.main()
+
 elif option == "Binomial Distribution":
     distributions.discrete.binomial.main()
 
 elif option == "Probability Distribution":
-    probability.probability.main()
+    distributions.discrete.probability.main()
 
 elif option == "Normal":
     distributions.continuous.normal.main()
