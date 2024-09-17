@@ -85,7 +85,7 @@ if topic == "Theory":
 elif topic == "Discrete Distributions":
     option = st.sidebar.radio(
         "Discrete Distributions",
-        ["Binomial", "Probability"]
+        ["Binomial Distribution", "Probability Distribution"]
     )
 
 elif topic == "Continuous Distributions":
@@ -135,10 +135,10 @@ if option == "Vocabulary":
 if option == "Chart Principles":
     theory.chart.main()
 
-elif option == "Binomial":
+elif option == "Binomial Distribution":
     distributions.discrete.binomial.main()
 
-elif option == "Probability":
+elif option == "Probability Distribution":
     probability.probability.main()
 
 elif option == "Normal":
