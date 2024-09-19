@@ -4,6 +4,8 @@
   <img src="https://github.com/user-attachments/assets/bb628bdb-bbdd-4677-87a3-9e8d1b8f5e6b" width="250"/>
 </p>
 
+![image](https://github.com/user-attachments/assets/79fb0898-fdab-4941-9261-9071b36ddd43)
+
 ## Overview
 [Click here to access the app](https://stats-calculator.streamlit.app/)
 
