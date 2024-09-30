@@ -39,87 +39,89 @@ def main():
     unsafe_allow_html=True
     )
 
-    # Display the formula for the Central Limit Theorem using st.latex
-    st.latex(r"""
-        \text{The Central Limit Theorem (CLT) states that, for a sufficiently large sample size } n, \\
-        \text{the sampling distribution of the sample mean } \bar{X} \text{ will be approximately normally} \\
-        \text{distributed regardless of the original distribution of the data.} \\
-             
-        \newline
-             
-        \text{If } X_1, X_2, \ldots, X_n \text{ are independent and identically distributed random variables} \\
-        \text{with population mean } \mu \text{ and population variance } \sigma^2 \text{, then:}
+    # Explanation of the Central Limit Theorem
+    st.header("Central Limit Theorem (CLT)")
+    st.write("""
+    The Central Limit Theorem states that for a sufficiently large sample size, 
+    the sampling distribution of the sample mean will be approximately normally distributed, 
+    regardless of the original distribution of the data.
     """)
 
+    st.latex(r"""
+    \text{Given: } X_1, X_2, \ldots, X_n \text{ are independent and identically distributed random variables}
+    """)
+    
+    st.latex(r"""
+    \text{with population mean } \mu \text{ and population variance } \sigma^2
+    """)
 
+    st.latex(r"""
+    \text{Then, for large } n\text{:}
+    """)
 
     st.latex(r"""
     \bar{X} \sim N \left( \mu, \frac{\sigma^2}{n} \right)
     """)
 
-    st.latex(r"""
-    \begin{align*}
-    \bar{X} & \text{ is the sample mean} \\
-    \mu & \text{ is the population mean} \\
-    \sigma^2 & \text{ is the population variance} \\
-    n & \text{ is the sample size}
-    \end{align*}
+    st.write("""
+    Where:
+    - $\overline{X}$ is the sample mean
+    - $\mu$ is the population mean
+    - $\sigma^2$ is the population variance
+    - $n$ is the sample size
     """)
 
-    # Choose the original distribution
+    # Distribution selection
     distribution = st.selectbox("Select Original Distribution:", ["Normal", "Uniform", "Exponential", "Triangular"])
 
-    # Set parameters for the chosen distribution
+    # Set distribution parameters
+    params = {}
     if distribution == "Normal":
-        mean = st.slider("Mean (for Normal Distribution)", -10.0, 10.0, 0.0, 0.1)
-        std_dev = st.slider("Standard Deviation (for Normal Distribution)", 0.1, 10.0, 1.0, 0.1)
-        params = {'mean': mean, 'std_dev': std_dev}
+        params['mean'] = st.slider("Mean", -10.0, 10.0, 0.0, 0.1)
+        params['std_dev'] = st.slider("Standard Deviation", 0.1, 10.0, 1.0, 0.1)
     elif distribution == "Uniform":
-        low = st.slider("Low (for Uniform Distribution)", -10.0, 0.0, 0.0, 0.1)
-        high = st.slider("High (for Uniform Distribution)", 0.0, 10.0, 1.0, 0.1)
-        params = {'low': low, 'high': high}
+        params['low'] = st.slider("Lower Bound", -10.0, 0.0, 0.0, 0.1)
+        params['high'] = st.slider("Upper Bound", 0.0, 10.0, 1.0, 0.1)
     elif distribution == "Exponential":
-        scale = st.slider("Scale (for Exponential Distribution)", 0.1, 10.0, 1.0, 0.1)
-        params = {'scale': scale}
+        params['scale'] = st.slider("Scale", 0.1, 10.0, 1.0, 0.1)
     elif distribution == "Triangular":
-        left = st.slider("Left (for Triangular Distribution)", -10.0, 0.0, 0.0, 0.1)
-        mode = st.slider("Mode (for Triangular Distribution)", -10.0, 10.0, 0.5, 0.1)
-        right = st.slider("Right (for Triangular Distribution)", 0.0, 20.0, 1.0, 0.1)
-        params = {'left': left, 'mode': mode, 'right': right}
+        params['left'] = st.slider("Left", -10.0, 0.0, 0.0, 0.1)
+        params['mode'] = st.slider("Mode", -10.0, 10.0, 0.5, 0.1)
+        params['right'] = st.slider("Right", 0.0, 20.0, 1.0, 0.1)
 
-    # Number of samples and sample size
-    num_samples = st.slider("Number of Samples (N)", 10, 1000, 100)
+    # Simulation parameters
+    num_samples = st.slider("Number of Samples", 10, 1000, 100)
     sample_size = st.slider("Sample Size", 1, 100, 30)
 
-    # Generate the original data
+    # Generate data
     original_data = generate_data(distribution, size=num_samples, **params)
-
-    # Generate sample means
     sample_means = [np.mean(generate_data(distribution, size=sample_size, **params)) for _ in range(num_samples)]
 
     # Calculate statistics
     pop_mean, pop_std, pop_std_error = calculate_statistics(original_data)
     sample_mean, sample_std, sample_std_error = calculate_statistics(sample_means)
 
-    # Plot the distributions
-    fig, axs = plt.subplots(1, 2, figsize=(14, 6))
-    plot_distribution(axs[0], original_data, 'Original Distribution', color='blue')
-    plot_distribution(axs[1], sample_means, 'Sampling Distribution of Sample Means', color='green')
+    # Plot distributions
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+    plot_distribution(ax1, original_data, 'Original Distribution', color='blue')
+    plot_distribution(ax2, sample_means, 'Sampling Distribution of Sample Means', color='green')
     st.pyplot(fig)
 
-    # Display statistics in two columns
+    # Display statistics
     st.subheader("Statistics:")
     col1, col2 = st.columns(2)
     
     with col1:
-        st.text(f"Population Mean: {pop_mean:.4f}")
-        st.text(f"Population Standard Deviation: {pop_std:.4f}")
-        st.text(f"Population Standard Error: {pop_std_error:.4f}")
+        st.write("Original Distribution:")
+        st.write(f"Mean: {pop_mean:.4f}")
+        st.write(f"Standard Deviation: {pop_std:.4f}")
+        st.write(f"Standard Error: {pop_std_error:.4f}")
     
     with col2:
-        st.text(f"Sample Mean: {sample_mean:.4f}")
-        st.text(f"Sample Standard Deviation: {sample_std:.4f}")
-        st.text(f"Sample Standard Error: {sample_std_error:.4f}")
+        st.write("Sampling Distribution:")
+        st.write(f"Mean: {sample_mean:.4f}")
+        st.write(f"Standard Deviation: {sample_std:.4f}")
+        st.write(f"Standard Error: {sample_std_error:.4f}")
 
 if __name__ == "__main__":
     main()

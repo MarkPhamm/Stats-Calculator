@@ -1,36 +1,43 @@
 import streamlit as st
 
+# Import theory modules
 import theory.chart
 import theory.vocab
-import theory.vocab
 
+# Import theorem modules
 import theorem.clt
 import theorem.llon
 
+# Import probability modules
 import probability.probability
+import probability.monty_hall
 
+# Import discrete distribution modules
 import distributions.discrete.probability
 import distributions.discrete.binomial
 
-import moe.moe
-
+# Import continuous distribution modules
 import distributions.continuous.normal
 import distributions.continuous.triangular
 import distributions.continuous.uniform
+import distributions.continuous.exponential
 
+# Import margin of error module
+import moe.moe
+
+# Import hypothesis test modules
 import hypothesis_test.hypothesis_test
 import hypothesis_test.chi_square
 
+# Import machine learning modules
 import ml.regression.linear_reg.gradient_descent
 import ml.regression.linear_reg.linear_reg
-
 import ml.others.kmeans
 
-import streamlit as st
-
+# Set up Streamlit page configuration
 st.set_page_config(
     page_title="Streamlit Statistics Calculator",
-    page_icon="🧊",
+    page_icon="📊",
     initial_sidebar_state="expanded",
     menu_items={
         'Get Help': 'https://www.linkedin.com/in/minhbphamm/',
@@ -38,6 +45,7 @@ st.set_page_config(
         'About': "# This an comprehensive Statistics Calculator"
     }
 )
+
 # Function to add custom CSS
 def add_custom_css():
     st.markdown("""
@@ -62,123 +70,99 @@ with col2:
     st.header("Statistics Calculator")
     st.markdown("By [Minh (Mark) Pham](https://www.linkedin.com/in/minhbphamm/)")
 
-
 # Sidebar with grouped radio buttons
-st.sidebar.header("Distribution Types")
+st.sidebar.header("Statistical Topics")
 
 # Create radio buttons for each group
 topic = st.sidebar.radio(
-    "Choose a topic",
-    ("Theory", "Theorem", "Probability", "Discrete Distributions", "Continuous Distributions", "Margin of Error", "Hypothesis Test", "Chi Square", "Machine Learning")
+    "Choose a statistical topic",
+    ("Statistical Theory", "Statistical Theorems", "Probability Concepts", "Discrete Distributions", "Continuous Distributions", "Margin of Error", "Hypothesis Testing", "Chi-Square Analysis", "Machine Learning Techniques")
 )
 
 option = None
 machine_learning_type = None
 
 # Based on the distribution type selected, show the corresponding options
-if topic == "Theory":
+if topic == "Statistical Theory":
     option = st.sidebar.radio(
-        "Discrete Distributions",
-        ["Vocabulary", "Chart Principles"]
+        "Theory Topics",
+        ["Statistical Vocabulary", "Chart Principles"]
     )
-
 elif topic == "Discrete Distributions":
     option = st.sidebar.radio(
         "Discrete Distributions",
         ["Binomial Distribution", "Probability Distribution"]
     )
-
 elif topic == "Continuous Distributions":
     option = st.sidebar.radio(
         "Continuous Distributions",
-        ["Normal", "Triangular", "Uniform"]
+        ["Normal Distribution", "Triangular Distribution", "Uniform Distribution", "Exponential Distribution"]
     )
-
-elif topic == "Probability":
-    option = "Probability"
-
+elif topic == "Probability Concepts":
+    option = st.sidebar.radio(
+        "Probability Concepts",
+        ["Probability Calculations", "Monty Hall Problem"]
+    )
 elif topic == "Margin of Error":
-    option = "MOE"
-
-elif topic == "Hypothesis Test":
-    option = "Hypothesis Test"
-
-elif topic == "Chi Square":
-    option = "Chi Square"
-
-elif topic == "Theorem":
+    option = "Margin of Error Calculations"
+elif topic == "Hypothesis Testing":
+    option = "Hypothesis Test Procedures"
+elif topic == "Chi-Square Analysis":
+    option = "Chi-Square Tests"
+elif topic == "Statistical Theorems":
     option = st.sidebar.radio(
-        "Theorem",
-        ["Central Limit Theorem", "Law of the Large number"]
+        "Theorems",
+        ["Central Limit Theorem", "Law of Large Numbers"]
     )
-
-elif topic == "Machine Learning":
+elif topic == "Machine Learning Techniques":
     machine_learning_type = st.sidebar.radio(
-        "Machine Learning",
-        ["Continuous", "Classification", "Others"]
+        "Machine Learning Categories",
+        ["Regression", "Classification", "Clustering"]
     )
 
-if machine_learning_type == "Continuous":
+if machine_learning_type == "Regression":
     option = st.sidebar.radio(
-        "Continuous ML model",
+        "Regression Models",
         ["Gradient Descent", "Linear Regression"])
-
-elif machine_learning_type == "Others":
+elif machine_learning_type == "Clustering":
     option = st.sidebar.radio(
-        "Others ML model",
-        ["Kmeans Clustering"])
+        "Clustering Models",
+        ["K-means Clustering"])
 
 # Main content based on the selected option
-if option == "Vocabulary":
+if option == "Statistical Vocabulary":
     theory.vocab.main()
-
-if option == "Chart Principles":
+elif option == "Chart Principles":
     theory.chart.main()
-
-elif option == "Probability":
+elif option == "Probability Calculations":
     probability.probability.main()
-
+elif option == "Monty Hall Problem":
+    probability.monty_hall.main()
 elif option == "Binomial Distribution":
     distributions.discrete.binomial.main()
-
 elif option == "Probability Distribution":
     distributions.discrete.probability.main()
-
-elif option == "Normal":
+elif option == "Normal Distribution":
     distributions.continuous.normal.main()
-
-elif option == "Triangular":
+elif option == "Triangular Distribution":
     distributions.continuous.triangular.main()
-
-elif option == "Uniform":
+elif option == "Uniform Distribution":
     distributions.continuous.uniform.main()
-
-elif option == "MOE":
+elif option == "Exponential Distribution":
+    distributions.continuous.exponential.main()
+elif option == "Margin of Error Calculations":
     moe.moe.main()
-
-elif option == "Hypothesis Test":
+elif option == "Hypothesis Test Procedures":
     hypothesis_test.hypothesis_test.main()
-
-elif option == "Chi Square":
+elif option == "Chi-Square Tests":
     hypothesis_test.chi_square.main()
-
 elif option == "Central Limit Theorem":
     theorem.clt.main()
-
-elif option == "Law of the Large number":
+elif option == "Law of Large Numbers":
     theorem.llon.main()
-
 elif option == "Gradient Descent":
     ml.regression.linear_reg.gradient_descent.main()
-
 elif option == "Linear Regression":
     ml.regression.linear_reg.linear_reg.main()
-
-elif option == "Kmeans Clustering":
+elif option == "K-means Clustering":
     ml.others.kmeans.main()
-
-
-
-
-
-    

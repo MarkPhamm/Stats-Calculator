@@ -1,134 +1,128 @@
 import streamlit as st
 
 def main():
-    # Title of the app
     st.title("Statistics Overview")
 
-    # Introduction to Statistics
-    st.header("What is Statistics")
+    st.header("What is Statistics?")
     st.write("""
-    - Statistics is a way to get information from data.
-    - It is a tool for creating new understanding from a set of numbers.
+    Statistics is:
+    - A method for extracting meaningful information from data.
+    - A powerful tool for generating new insights from numerical data sets.
     """)
 
-    # Types of Statistics
     st.header("Types of Statistics")
     
     st.subheader("1. Descriptive Statistics")
     st.write("""
-    - Descriptive statistics deals with methods of:
-        - Organizing
-        - Summarizing
-        - Presenting data in a convenient and informative way.
+    Descriptive statistics focuses on:
+    - Organizing data effectively
+    - Summarizing key information
+    - Presenting data in clear, informative ways
     """)
 
     st.subheader("2. Inferential Statistics")
     st.write("""
-    - Inferential statistics involves:
-        - Drawing conclusions about the characteristics of a population based on a sample.
-        - Making predictions or inferences about the population.
+    Inferential statistics involves:
+    - Making conclusions about a population based on sample data
+    - Predicting population characteristics using sample information
     """)
 
-   # Data Types
     st.header("Data Types")
 
     st.subheader("1. Qualitative Data (Categorical)")
     st.write("""
-    - Descriptive, non-numeric data that characterizes attributes or properties.
-        - **Nominal Data:** Categories with no inherent order (e.g., colors, types of animals).
-        - **Ordinal Data:** Categories with a meaningful order, but without consistent differences between ranks (e.g., rankings, satisfaction levels).
+    Non-numeric data describing attributes or properties:
+    - **Nominal Data:** Categories without order (e.g., colors, animal species)
+    - **Ordinal Data:** Ordered categories without consistent intervals (e.g., rankings, satisfaction levels)
     """)
 
     st.subheader("2. Quantitative Data")
     st.write("""
-    - Numeric data representing quantities or amounts.
-      - **Discrete Data**: Countable values, often integers (e.g., number of students, cars).
-      - **Continuous Data**: Measurable values that can take any number within a range (e.g., height, weight).
-        - **Interval Data**: Numeric values with meaningful intervals but no true zero point (e.g., temperature in Celsius or Fahrenheit).
-        - **Ratio Data**: Numeric values with meaningful intervals but has true zero point (e.g., height, weight, age, and income""")
-
-    # Key Statistics Concepts
-    st.header("Key Statistics Concepts")
-    
-    st.subheader("1. Population - Parameter")
-    st.write("""
-    - A population is the group of all items of interest to a statistics practitioner.
-    - Populations can be very large, sometimes infinite.
+    Numeric data representing quantities or amounts:
+    - **Discrete Data:** Countable, often whole numbers (e.g., number of students, cars)
+    - **Continuous Data:** Measurable values within a range (e.g., height, weight)
+      - **Interval Data:** Numeric with meaningful intervals, no true zero (e.g., temperature in °C or °F)
+      - **Ratio Data:** Numeric with meaningful intervals and a true zero point (e.g., height, weight, age, income)
     """)
 
-    st.subheader("2. Sample - Statistic")
+    st.header("Key Statistics Concepts")
+    
+    st.subheader("1. Population and Parameters")
     st.write("""
-    - A sample is a subset of the population.
-    - Samples are typically smaller than the population and are often selected randomly to ensure equal chances for everyone.
+    - Population: The entire group of interest in a statistical study
+    - Parameters: Numerical characteristics of a population (often unknown)
+    - Populations can be very large or even infinite
+    """)
+
+    st.subheader("2. Sample and Statistics")
+    st.write("""
+    - Sample: A subset of the population used for study
+    - Statistics: Numerical characteristics of a sample (used to estimate population parameters)
+    - Samples are typically smaller than the population and often randomly selected for fairness
     """)
 
     st.subheader("3. Confidence and Significance Levels")
     st.write("""
-    - **Confidence Level**: Proportion of times that estimates will be correct.
-      - E.g., a 95% confidence level means that estimates will be correct 95% of the time.
-    - **Significance Level**: Measures how frequently the conclusion will be wrong in the long run.
-      - E.g., a 5% significance level means the conclusion will be wrong 5% of the time.
+    - **Confidence Level:** The probability that an estimate is correct
+      Example: 95% confidence level means the estimate is likely correct 95% of the time
+    - **Significance Level:** The probability of drawing an incorrect conclusion
+      Example: 5% significance level means the conclusion may be wrong 5% of the time
     """)
 
-    # Variables and Domain
     st.header("Variables and Domain")
     st.write("""
-    - A variable represents some characteristic of a population or sample.
-    - The domain or value set of the variable refers to the range of possible values for a variable.
-    - Data are the observed values of a variable.
+    - Variable: A characteristic of interest in a population or sample
+    - Domain: The set of all possible values for a variable
+    - Data: The actual observed values of a variable
     """)
 
-    # Frequency Distribution
     st.header("Frequency Distribution")
     st.write("""
-    - We can summarize data in a table that presents the categories and their counts.
-    - **Relative Frequency Distribution**: Lists categories and the proportion with which each occurs.
+    - A summary table showing categories and their counts
+    - **Relative Frequency Distribution:** Shows the proportion of each category in the data
     """)
 
-    # Data Distribution
-    st.header("Data Distribution")
+    st.header("Data Distribution Shapes")
     st.write("""
-    Data can have different shapes:
-    - **Negatively Skewed**
-    - **Positively Skewed**
-    - **Approximately Normal**: 
-      - A normal distribution where the mean = median = mode. 
-      - 100% of data lies within the bell curve.
-      - Empirical rules apply.
+    Common distribution shapes:
+    - **Negatively Skewed:** Tail extends to the left
+    - **Positively Skewed:** Tail extends to the right
+    - **Approximately Normal:** 
+      - Symmetric bell-shaped curve
+      - Mean = Median = Mode
+      - Follows specific empirical rules
     """)
 
-    st.subheader("Skewness Rules:")
+    st.subheader("Skewness Interpretation:")
     st.write("""
-    - If skewness is less than -1 or greater than 1: Highly skewed distribution.
-    - If skewness is between -1 and -0.5 or between 0.5 and 1: Moderately skewed distribution.
-    - If skewness is between -0.5 and 0.5: Approximately symmetric.
+    - Highly skewed: Skewness < -1 or > 1
+    - Moderately skewed: -1 < Skewness < -0.5 or 0.5 < Skewness < 1
+    - Approximately symmetric: -0.5 < Skewness < 0.5
     """)
 
-    # Scatter Plot and Correlation
     st.header("Exploring Relationships")
     st.write("""
-    To explore relationships, we use a scatter diagram that plots two variables against each other:
-    - The independent variable is placed on the horizontal axis (X).
-    - The dependent variable is placed on the vertical axis (Y).
+    Scatter plots visualize relationships between two variables:
+    - X-axis: Independent variable
+    - Y-axis: Dependent variable
     """)
 
     st.subheader("Covariance")
     st.write("""
-    Covariance tells us the direction of the relationship between variables:
-    - Positive Relationship
-    - Negative Relationship
-    - No Relationship
+    Covariance indicates the direction of variable relationships:
+    - Positive: Variables increase together
+    - Negative: One variable increases as the other decreases
+    - Zero: No linear relationship
     """)
 
     st.subheader("Correlation Coefficient")
     st.write("""
-    - The correlation coefficient measures the strength and direction of the relationship between two variables.
-    - The correlation coefficient ranges from -1 to 1:
-      - **1** indicates a perfect positive linear relationship.
-      - **-1** indicates a perfect negative linear relationship.
-      - **0** indicates no linear relationship.
+    Measures the strength and direction of linear relationships:
+    - Range: -1 to 1
+    - 1: Perfect positive linear relationship
+    - -1: Perfect negative linear relationship
+    - 0: No linear relationship
     """)
 
 if __name__ == "__main__":
     main()
-

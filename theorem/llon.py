@@ -2,23 +2,20 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 
-def plot_probability_of_heads(ax, probabilities, title):
-    ax.plot(probabilities, color='blue')
+def plot_probability_convergence(ax, probabilities):
+    ax.plot(probabilities, color='blue', label='Observed Probability')
     ax.axhline(y=0.5, color='red', linestyle='--', label='True Probability (0.5)')
-    ax.set_title(title)
-    ax.set_xlabel('Number of Tosses')
+    ax.set_title('Convergence of Coin Flip Probability to 0.5')
+    ax.set_xlabel('Number of Coin Flips')
     ax.set_ylabel('Probability of Heads')
     ax.legend()
 
-def generate_coin_tosses(size):
-    # Generate a sequence of coin tosses (0 for tails, 1 for heads)
-    return np.random.binomial(n=1, p=0.5, size=size)
+def simulate_coin_flips(num_flips):
+    return np.random.choice([0, 1], size=num_flips)
 
-def calculate_running_probabilities(data):
-    # Calculate the running probability of heads
-    cumulative_sums = np.cumsum(data)
-    running_probabilities = cumulative_sums / (np.arange(1, len(data) + 1))
-    return running_probabilities
+def calculate_cumulative_probabilities(flips):
+    cumulative_heads = np.cumsum(flips)
+    return cumulative_heads / (np.arange(1, len(flips) + 1))
 
 def main():
     st.title("Law of Large Numbers Demonstration")
@@ -32,39 +29,35 @@ def main():
     unsafe_allow_html=True
     )
 
-    # Display the formula for the Law of Large Numbers using st.latex
     st.latex(r"""
-        \text{The Law of Large Numbers (LLN) states that as the number of trials } n \text{ increases,} \\
-        \text{the sample mean } \bar{X} \text{ of a random variable will converge to the population mean } \mu. \\
-        \text{In other words, for a large number of trials, the average of the results will be close to the} \\
-        \text{expected value (population mean).}
+        \text{Law of Large Numbers (LLN):} \\
+        \text{As the number of trials } n \text{ increases,} \\
+        \text{the sample mean } \bar{X} \text{ converges to the population mean } \mu.
     """)
 
     st.latex(r"""
-    \bar{X} \approx \mu \text{ as } n \to \infty
+    \lim_{n \to \infty} P(|\bar{X}_n - \mu| < \epsilon) = 1, \text{ for any } \epsilon > 0
     """)
 
     st.latex(r"""
     \begin{align*}
-    \bar{X} & \text{ is the sample mean} \\
-    \mu & \text{ is the population mean} \\
-    n & \text{ is the number of trials}
+    \bar{X}_n & : \text{ Sample mean after } n \text{ trials} \\
+    \mu & : \text{ Population mean} \\
+    n & : \text{ Number of trials} \\
+    \epsilon & : \text{ Any small positive number}
     \end{align*}
     """)
 
-    # Number of coin tosses
-    num_tosses = st.slider("Number of Coin Tosses", 10, 10000, 1000)
+    num_flips = st.slider("Number of Coin Flips", 10, 10000, 1000)
 
-    # Generate the coin toss data
-    data = generate_coin_tosses(num_tosses)
+    coin_flips = simulate_coin_flips(num_flips)
+    cumulative_probabilities = calculate_cumulative_probabilities(coin_flips)
 
-    # Calculate running probabilities
-    running_probabilities = calculate_running_probabilities(data)
-
-    # Plot the running probability of heads
     fig, ax = plt.subplots(figsize=(10, 6))
-    plot_probability_of_heads(ax, running_probabilities, 'Convergence of Head Probability to 0.5')
+    plot_probability_convergence(ax, cumulative_probabilities)
     st.pyplot(fig)
+
+    st.write(f"Final observed probability after {num_flips} flips: {cumulative_probabilities[-1]:.4f}")
 
 if __name__ == "__main__":
     main()
