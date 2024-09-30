@@ -30,9 +30,9 @@ import hypothesis_test.hypothesis_test
 import hypothesis_test.chi_square
 
 # Import machine learning modules
-import ml.regression.linear_reg.gradient_descent
-import ml.regression.linear_reg.linear_reg
-import ml.others.kmeans
+import ml.supervised.regression.linear_reg
+import ml.supervised.regression.gradient_descent
+import ml.unsupervised.kmeans
 
 # Set up Streamlit page configuration
 st.set_page_config(
@@ -117,16 +117,16 @@ elif topic == "Statistical Theorems":
 elif topic == "Machine Learning Techniques":
     machine_learning_type = st.sidebar.radio(
         "Machine Learning Categories",
-        ["Regression", "Classification", "Clustering"]
+        ["Supervised", "Unsupervised"]
     )
 
-if machine_learning_type == "Regression":
+if machine_learning_type == "Supervised":
     option = st.sidebar.radio(
-        "Regression Models",
+        "Supervised Learning Models",
         ["Gradient Descent", "Linear Regression"])
-elif machine_learning_type == "Clustering":
+elif machine_learning_type == "Unsupervised":
     option = st.sidebar.radio(
-        "Clustering Models",
+        "Unsupervised Learning Models",
         ["K-means Clustering"])
 
 # Main content based on the selected option
@@ -161,8 +161,8 @@ elif option == "Central Limit Theorem":
 elif option == "Law of Large Numbers":
     theorem.llon.main()
 elif option == "Gradient Descent":
-    ml.regression.linear_reg.gradient_descent.main()
+    ml.supervised.regression.gradient_descent.main()
 elif option == "Linear Regression":
-    ml.regression.linear_reg.linear_reg.main()
+    ml.supervised.regression.linear_reg.main()
 elif option == "K-means Clustering":
-    ml.others.kmeans.main()
+    ml.unsupervised.kmeans.main()
