@@ -4,6 +4,8 @@
   <img src="https://github.com/user-attachments/assets/bb628bdb-bbdd-4677-87a3-9e8d1b8f5e6b" width="250"/>
 </p>
 
+![image](https://github.com/user-attachments/assets/79fb0898-fdab-4941-9261-9071b36ddd43)
+
 ## Overview
 [Click here to access the app](https://stats-calculator.streamlit.app/)
 
@@ -24,7 +26,7 @@ Whether you're looking to explore binomial distributions, run hypothesis tests, 
    - **Triangular Distribution**: Analyze data with known minimum, maximum, and mode values.
    - **Uniform Distribution**: Explore uniform distribution scenarios where all outcomes are equally likely.
 
-### 3. **Margin of Error (MOE)**
+### 3. **Margin of Error**
    - Calculate the margin of error for survey or sampling results, providing insights into the accuracy and precision of your data.
 
 ### 4. **Hypothesis Testing**
