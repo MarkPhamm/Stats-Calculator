@@ -34,6 +34,7 @@ def exponential_distribution():
     st.title("Exponential Distribution Calculator")
     st.latex(r"\text{PDF}(x) = \lambda e^{-\lambda x}")
     st.latex(r"\text{CDF}(x) = 1 - e^{-\lambda x}")
+    st.latex(r"\lambda = \frac{1}{\mu}")
 
     rate = st.number_input("Enter the Rate (λ)", value=1.0, step=0.1, min_value=0.1)
     x = st.number_input("Enter the value of x", value=1.0, step=0.1, min_value=0.0)
@@ -60,6 +61,7 @@ def exponential_distribution():
 def inverse_exponential_distribution():
     st.title("Inverse Exponential Distribution")
     st.latex(r"x = \text{CDF}^{-1}(p) = -\frac{\ln(1-p)}{\lambda}")
+    st.latex(r"\lambda = \frac{1}{\mu}")
 
     rate = st.number_input("Enter the Rate (λ)", value=1.0, step=0.1, min_value=0.1)
     area_left = st.slider("Enter the percentage of area to the left (as %)", min_value=0.01, max_value=99.99, value=50.0, step=0.01)
