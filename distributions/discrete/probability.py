@@ -33,6 +33,7 @@ def main():
         st.session_state.df = pd.DataFrame({"X": [0.0], "P(X)": [0.0]})
 
     st.subheader("Enter X and P(X) values")
+    
     edited_df = st.data_editor(
         st.session_state.df,
         use_container_width=True,
@@ -41,13 +42,14 @@ def main():
             "X": st.column_config.NumberColumn("X", format="%.2f", required=True),
             "P(X)": st.column_config.NumberColumn("P(X)", format="%.2f", required=True)
         },
-        key="data_editor",
-        on_change=lambda: setattr(st.session_state, 'df', pd.DataFrame(st.session_state.data_editor))
+        key="data_editor"
     )
 
     if st.button("Submit"):
         df = pd.DataFrame(edited_df)
-        df = df[(df['X'] != 0) | (df['P(X)'] != 0)]  # Remove rows where both X and P(X) are 0
+
+        # Remove rows where both X and P(X) are 0
+        df = df[(df['X'] != 0) | (df['P(X)'] != 0)]  
 
         if df.empty:
             st.error("Please enter valid numerical values for X and P(X).")
