@@ -22,8 +22,9 @@ import distributions.continuous.triangular
 import distributions.continuous.uniform
 import distributions.continuous.exponential
 
-# Import margin of error module
+# Import margin of error modules
 import moe.moe
+import moe.moe_inverse  # Added import for margin of error inverse
 
 # Import hypothesis test modules
 import hypothesis_test.hypothesis_test
@@ -76,7 +77,7 @@ st.sidebar.header("Statistical Topics")
 # Create radio buttons for each group
 topic = st.sidebar.radio(
     "Choose a statistical topic",
-    ("Statistical Theory", "Statistical Theorems", "Probability Concepts", "Discrete Distributions", "Continuous Distributions", "Margin of Error", "Hypothesis Testing", "Chi-Square Analysis", "Machine Learning Techniques")
+    ("Statistical Theory", "Statistical Theorems", "Probability Concepts", "Discrete Distributions", "Continuous Distributions", "Margin of Error", "Hypothesis Testing", "Chi-Square Analysis", "Machine Learning Techniques")  # Added "Margin of Error Inverse"
 )
 
 option = None
@@ -104,7 +105,10 @@ elif topic == "Probability Concepts":
         ["Probability Calculations", "Monty Hall Problem"]
     )
 elif topic == "Margin of Error":
-    option = "Margin of Error Calculations"
+    option = st.sidebar.radio(
+        "Margin of Error Options",
+        ["Margin of Error Calculations", "Margin of Error Inverse Calculations"]  # New option for margin of error inverse
+    )
 elif topic == "Hypothesis Testing":
     option = "Hypothesis Test Procedures"
 elif topic == "Chi-Square Analysis":
@@ -152,6 +156,8 @@ elif option == "Exponential Distribution":
     distributions.continuous.exponential.main()
 elif option == "Margin of Error Calculations":
     moe.moe.main()
+elif option == "Margin of Error Inverse Calculations":  # Added handling for margin of error inverse
+    moe.moe_inverse.main()
 elif option == "Hypothesis Test Procedures":
     hypothesis_test.hypothesis_test.main()
 elif option == "Chi-Square Tests":
