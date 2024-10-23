@@ -15,6 +15,7 @@ import probability.monty_hall
 # Import discrete distribution modules
 import distributions.discrete.probability
 import distributions.discrete.binomial
+import distributions.discrete.poisson  # Added import for Poisson distribution
 
 # Import continuous distribution modules
 import distributions.continuous.normal
@@ -92,7 +93,7 @@ if topic == "Statistical Theory":
 elif topic == "Discrete Distributions":
     option = st.sidebar.radio(
         "Discrete Distributions",
-        ["Binomial Distribution", "Probability Distribution"]
+        ["Binomial Distribution", "Probability Distribution", "Poisson Distribution"]  # Added Poisson Distribution option
     )
 elif topic == "Continuous Distributions":
     option = st.sidebar.radio(
@@ -146,6 +147,8 @@ elif option == "Binomial Distribution":
     distributions.discrete.binomial.main()
 elif option == "Probability Distribution":
     distributions.discrete.probability.main()
+elif option == "Poisson Distribution":  # Added handling for Poisson distribution
+    distributions.discrete.poisson.main()
 elif option == "Normal Distribution":
     distributions.continuous.normal.main()
 elif option == "Triangular Distribution":
