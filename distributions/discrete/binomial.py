@@ -69,8 +69,8 @@ def main():
 
     st.write(f"Mean: {mean:.4f}")
     st.write(f"Standard Deviation: {std_dev:.4f}")
-    st.write(f"Cumulative Probability P(X <= {s_min}): {p_less_than_equal_s_min:.4f}")
-    st.write(f"Cumulative Probability P(X <= {s_max}): {p_less_than_equal_s_max:.4f}")
+    st.success(f"Cumulative Probability P(X <= {s_min}): {p_less_than_equal_s_min:.4f}")
+    st.success(f"Cumulative Probability P(X <= {s_max}): {p_less_than_equal_s_max:.4f}")
 
     st.success(f"Probability P({s_min} <= X <= {s_max}): {p_range:.4f}")
 
@@ -84,7 +84,7 @@ def main():
         if valid_x_values:
             for x in valid_x_values:
                 prob = binom.pmf(x, n, p)
-                st.write(f"P(X = {x}): {prob:.4f}")
+                st.success(f"P(X = {x}): {prob:.4f}")
         else:
             st.warning("Please enter valid x values between 0 and n.")
     except ValueError:
