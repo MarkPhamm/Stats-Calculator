@@ -61,6 +61,10 @@ def main():
     st.write(f"Mean: {mean:.4f}")
     st.write(f"Standard Deviation: {std_dev:.4f}")
 
+    # Calculate and display the percentage between x_min and x_max
+    total_prob = sum(poisson.pmf(np.arange(x_min, x_max + 1), lam))
+    st.success(f"Percentage of occurrences between {x_min} and {x_max}: {total_prob * 100:.2f}%")
+
     st.header("Calculate P(X = x) for specific values")
     x_values_input = st.text_input("Enter values of x (separated by commas)", value="0, 1, 2")
     
@@ -71,7 +75,7 @@ def main():
         if valid_x_values:
             for x in valid_x_values:
                 prob = poisson.pmf(x, lam)
-                st.write(f"P(X = {x}): {prob:.4f}")
+                st.success(f"P(X = {x}): {prob:.4f}")
         else:
             st.warning("Please enter valid x values.")
     except ValueError:

@@ -35,6 +35,24 @@ def plot_chi_square_distribution(chi2_stat, dof=None):
     st.pyplot(plt.gcf())
     plt.close()
 
+def display_results(chi2_stat, p_value, dof, expected=None):
+    if expected is not None:
+        st.write("Expected Frequencies:")
+        st.dataframe(expected, use_container_width=True)
+    st.success(f"Chi-Square Statistic: {chi2_stat:.4f}")
+    st.success(f"P-Value: {p_value:.4f}")
+    st.success(f"Degrees of Freedom: {dof}")
+
+    critical_value = stats.chi2.ppf(0.95, df=dof)
+    st.success(f"**Critical Value (95% confidence):** {critical_value:.4f}")
+
+    if chi2_stat > critical_value:
+        st.success("**Conclusion:** Reject the null hypothesis. There is significant evidence of a difference or dependence.")
+    else:
+        st.error("**Conclusion:** Fail to reject the null hypothesis. There is not enough evidence to conclude a difference or dependence.")
+
+    plot_chi_square_distribution(chi2_stat, dof)
+
 def main():
     st.title("Chi-Square Tests")
 
@@ -69,6 +87,8 @@ def goodness_of_fit_test():
             
             if len(observed) != len(expected):
                 st.error("Length of observed and expected frequencies must be the same.")
+            elif not np.isclose(np.sum(observed), np.sum(expected), rtol=1e-8):
+                st.error("The sum of observed frequencies must match the sum of expected frequencies.")
             else:
                 chi2_stat, p_value = chi_square_goodness_of_fit(observed, expected)
                 display_results(chi2_stat, p_value, len(observed) - 1)
@@ -93,27 +113,6 @@ def independence_test():
             contingency_table = contingency_table.values
             chi2_stat, p_value, dof, expected = chi_square_test_of_independence(contingency_table)
             display_results(chi2_stat, p_value, dof, expected)
-
-def display_results(chi2_stat, p_value, dof, expected=None):
-    col1, col2 = st.columns(2)
-    with col1:
-        st.write(f"Chi-Square Statistic: {chi2_stat:.4f}")
-        st.write(f"P-Value: {p_value:.4f}")
-    with col2:
-        st.write(f"Degrees of Freedom: {dof}")
-        if expected is not None:
-            st.write("Expected Frequencies:")
-            st.dataframe(expected, use_container_width=True)
-
-    critical_value = stats.chi2.ppf(0.95, df=dof)
-    st.write(f"**Critical Value (95% confidence):** {critical_value:.4f}")
-
-    if chi2_stat > critical_value:
-        st.write("**Conclusion:** Reject the null hypothesis. There is significant evidence of a difference or dependence.")
-    else:
-        st.write("**Conclusion:** Fail to reject the null hypothesis. There is not enough evidence to conclude a difference or dependence.")
-
-    plot_chi_square_distribution(chi2_stat, dof)
 
 if __name__ == "__main__":
     main()

@@ -116,19 +116,17 @@ def main():
         p_value = 1 - distribution.cdf(test_statistic, df) if df is not None else 1 - distribution.cdf(test_statistic)
 
     st.subheader("Results:")
-    st.write(f"Test Statistic: {test_statistic:.4f}")
-    st.write(f"Critical Value: {critical_value:.4f}")
-    st.write(f"p-value: {p_value:.4f}")
+    st.success(f"Test Statistic: {test_statistic:.4f}")
+    st.success(f"Critical Value: {critical_value:.4f}")
+    st.success(f"p-value: {p_value:.4f}")
 
     plot_distribution(distribution, test_statistic, critical_value, hypothesis_type, df)
 
     st.subheader("Conclusion:")
     if p_value < significance_level:
-        st.success(f"Reject the null hypothesis (p-value {p_value:.4f} < α {significance_level}).")
-        st.success("There is sufficient evidence to support the alternative hypothesis.")
+        st.success(f"Reject the null hypothesis (p-value {p_value:.4f} < α {significance_level}). There is sufficient evidence to support the alternative hypothesis.")
     else:
-        st.error(f"Fail to reject the null hypothesis (p-value {p_value:.4f} ≥ α {significance_level}).")
-        st.error("There is not sufficient evidence to support the alternative hypothesis.")
+        st.error(f"Fail to reject the null hypothesis (p-value {p_value:.4f} ≥ α {significance_level}). There is not sufficient evidence to support the alternative hypothesis.")
 
 if __name__ == "__main__":
     main()

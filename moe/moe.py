@@ -72,7 +72,7 @@ def main():
             
             plot_normal_distribution_with_moe(sample_mean, moe, std_error, confidence_level)
 
-            st.write(f"With {confidence_level}% confidence, the population mean is estimated to be between {sample_mean - moe:.4f} and {sample_mean + moe:.4f}.")
+            st.success(f"With {confidence_level}% confidence, the population mean is estimated to be between {sample_mean - moe:.4f} and {sample_mean + moe:.4f}.")
         
         else:
             sample_std_dev = st.number_input("Enter Sample Standard Deviation (s)", value=1.0, step=0.1)
