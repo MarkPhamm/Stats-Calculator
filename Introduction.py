@@ -14,7 +14,6 @@ st.set_page_config(
     }
 )
 
-
 utils.add_custom_css()
 
 # Create a two-column layout
