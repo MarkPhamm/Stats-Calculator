@@ -1,13 +1,37 @@
 # Statistic Calculator App
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/9006cf8f-1e73-4299-a713-5f5cfa06d84f" width="250"/>
-  <img src="https://github.com/user-attachments/assets/bb628bdb-bbdd-4677-87a3-9e8d1b8f5e6b" width="250"/>
+  <img src="Statistics_Calculator.png"/>
+</p>
+<p>
+   <img src='https://img.shields.io/github/commit-activity/t/MarkPhamm/Stats-Calculator/main'>
+   <img src='https://img.shields.io/github/created-at/MarkPhamm/Stats-Calculator'>
+   <img src='https://img.shields.io/github/last-commit/MarkPhamm/Stats-Calculator'>
+   <img src='https://img.shields.io/github/languages/count/MarkPhamm/Stats-Calculator'>
+   <img src='https://img.shields.io/github/contributors/markphamm/stats-calculator'>
 </p>
 
-![image](https://github.com/user-attachments/assets/79fb0898-fdab-4941-9261-9071b36ddd43)
+## Table of Contents
+- [Technologies](#technologies)
+- [Overview](#overview)
+- [Documentation](#documentations)
+- [Installation and Usage](#installation-and-usage)
+- [Future Enhancements](#future-enhancements)
+- [Feedback and Contributions](#feedback-and-contributions)
+- [License](#license)
+- [Contacts](#contacts)
+
+## Technologies
+<p>
+   <img src='https://img.shields.io/badge/Streamlit-black?style=for-the-badge&logo=streamlit&logoColor=%23FF4B4B&labelColor=black&color=%23FF4B4B&link=streamlit.io'>
+   <img src='https://img.shields.io/badge/Python-black?style=for-the-badge&logo=python&logoColor=%233776AB&labelColor=black&color=%233776AB&link=https%3A%2F%2Fwww.python.org%2F'>
+   <img src='https://img.shields.io/badge/NumPy-black?style=for-the-badge&logo=numpy&logoColor=%23013243&labelColor=white&color=%23013243&link=https%3A%2F%2Fnumpy.org%2F'>
+   <img src='https://img.shields.io/badge/SciPy-black?style=for-the-badge&logo=scipy&logoColor=%238CAAE6&labelColor=black&color=%238CAAE6&link=https%3A%2F%2Fscipy.org%2F'>
+   <img src='https://img.shields.io/badge/Sklearn-black?style=for-the-badge&logo=scikitlearn&logoColor=%23F7931E&labelColor=black&color=%23F7931E&link=https%3A%2F%2Fscikit-learn.org%2Fstable%2F'>
+</p>
 
 ## Overview
 [Click here to access the app](https://stats-calculator.streamlit.app/)
+
 
 Welcome to the **Statistic Calculator** app! This Streamlit-powered application provides a comprehensive suite of statistical tools and models for data analysis, hypothesis testing, and machine learning. The app is divided into several sections, covering both discrete and continuous distributions, margin of error (MOE) calculations, hypothesis tests, statistical theorems, and machine learning models.
 
@@ -15,68 +39,15 @@ Whether you're looking to explore binomial distributions, run hypothesis tests, 
 
 ---
 
-## Features
+## Documentations
 
-### 1. **Discrete Distributions**
-   - **Binomial Distribution**: Calculate the probabilities of different outcomes in a binomial setting (e.g., number of successes in a series of trials).
-   - **Probability**: General probability calculations for discrete events.
+The mathematical features, folder structure of the software is documented [here](./documentation.md)
 
-### 2. **Continuous Distributions**
-   - **Normal Distribution**: Generate and analyze the bell curve of a normal distribution, often used in statistical analyses.
-   - **Triangular Distribution**: Analyze data with known minimum, maximum, and mode values.
-   - **Uniform Distribution**: Explore uniform distribution scenarios where all outcomes are equally likely.
-
-### 3. **Margin of Error**
-   - Calculate the margin of error for survey or sampling results, providing insights into the accuracy and precision of your data.
-
-### 4. **Hypothesis Testing**
-   - Perform hypothesis testing on different datasets to validate or reject statistical assumptions.
-
-### 5. **Chi-Square Test**
-   - Perform Chi-Square tests for **Goodness of Fit** or **Test of Independence** based on categorical data.
-
-### 6. **Theorems**
-   - **Central Limit Theorem (CLT)**: Demonstrate the CLT by analyzing the distribution of sample means.
-   - **Law of Large Numbers (LLN)**: Illustrate the LLN by exploring the convergence of sample averages to the expected value as sample sizes increase.
-
-### 7. **Machine Learning**
-   - **Gradient Descent**: Visualize and understand how gradient descent works for continuous data optimization.
-   - **Linear Regression**: Apply linear regression models to find the best-fit line and predict outcomes based on input features.
-
----
-
-## User Interface
-
-### Sidebar Menu
-
-The app features a **sidebar** with grouped radio buttons, allowing you to choose the type of analysis or distribution you want to explore:
-- **Discrete Distributions**
-- **Continuous Distributions**
-- **MOE**
-- **Hypothesis Test**
-- **Chi Square**
-- **Theorem**
-- **Machine Learning**
-
-Once you select a topic, additional options will appear in the sidebar for further customization.
-
-### Main Content
-
-After selecting an option in the sidebar, the main content area dynamically updates to display the corresponding calculations, visualizations, or models. For example, choosing "Binomial" under "Discrete Distributions" will bring up a calculator for binomial distribution probabilities, while selecting "Gradient Descent" under "Machine Learning" will allow you to visualize the optimization process.
-
-### Layout
-
-The layout features a **two-column design**:
-- **Left Column**: Displays a resized image for visual appeal.
-- **Right Column**: Shows the app title, "Statistic Calculator", and a brief description with a link to the developer’s [LinkedIn profile](https://www.linkedin.com/in/minhbphamm/).
-
----
-
-## Installation & Usage
-
+## Installation and Usage
+![Tutorial GIF](./stats.gif)
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/your-repository/statistic-calculator-app.git
+   git clone https://github.com/MarkPhamm/Stats-Calculator.git
    ```
 
 2. **Create a Virtual Environment**
@@ -101,20 +72,8 @@ The layout features a **two-column design**:
 
 5. **Run the Application**
    ```bash
-   streamlit run app.py
+   streamlit run Introduction.py
    ```
----
-
-## Folder Structure
-
-- **distributions**: Contains modules for handling different distributions (discrete and continuous).
-  - `discrete`: Includes binomial and probability functions.
-  - `continuous`: Includes normal, triangular, and uniform distributions.
-- **hypothesis_test**: Contains modules for hypothesis testing and Chi-Square tests.
-- **moe**: Contains the margin of error calculations.
-- **theorem**: Handles statistical theorems like the Central Limit Theorem and Law of Large Numbers.
-- **ml**: Includes machine learning models such as gradient descent and linear regression.
-
 ---
 
 ## Future Enhancements
@@ -125,11 +84,32 @@ The layout features a **two-column design**:
 
 ---
 
-## Author
+## Feedback and Contributions
+
+We've made every effort to implement all the main aspects of the project in the best possible way. However, the development journey doesn't end here, and your input is crucial for our continuous improvement.
+
+> [!IMPORTANT]
+> Whether you have feedback on features, have encountered any bugs, or have suggestions for enhancements, we're eager to hear from you. Your insights help us make the Stats-Calculator more robust and user-friendly.
+
+Please feel free to contribute by [submitting an issue](https://github.com/MarkPhamm/Stats-Calculator/issues). Each contribution helps us grow and improve.
+
+We appreciate your support and look forward to making our product even better with your help!
+
+---
+
+## License
+
+[MIT](./LICENSE)
+
+For non-commercial use, this product is available for free.
+
+---
+
+## Contacts
 
 Developed by [Minh (Mark) Pham](https://www.linkedin.com/in/minhbphamm/), this app is designed to provide a comprehensive toolkit for both students and professionals in statistics and data science.
 
-Feel free to reach out at minh.b.pham@tcu.edu for any questions or suggestions!
-```
+Feel free to reach out at [minh.b.pham@tcu.edu](mailto:minh.b.pham@tcu) for any questions or suggestions!
 
-This updated README includes the additional details and sections you specified, providing clear instructions and information about the app.
+[Back to top](#top)
+
