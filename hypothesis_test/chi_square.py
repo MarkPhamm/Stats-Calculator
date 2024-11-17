@@ -35,7 +35,7 @@ def plot_chi_square_distribution(chi2_stat, dof=None):
     st.pyplot(plt.gcf())
     plt.close()
 
-def display_results(chi2_stat, p_value, dof, expected=None):
+def display_results(chi2_stat, p_value, dof, expected=None, alpha=0.05):
     if expected is not None:
         st.write("Expected Frequencies:")
         st.dataframe(expected, use_container_width=True)
@@ -43,8 +43,8 @@ def display_results(chi2_stat, p_value, dof, expected=None):
     st.success(f"P-Value: {p_value:.4f}")
     st.success(f"Degrees of Freedom: {dof}")
 
-    critical_value = stats.chi2.ppf(0.95, df=dof)
-    st.success(f"**Critical Value (95% confidence):** {critical_value:.4f}")
+    critical_value = stats.chi2.ppf(1 - alpha, df=dof)
+    st.success(f"**Critical Value ({(1-alpha)*100:.0f}% confidence):** {critical_value:.4f}")
 
     if chi2_stat > critical_value:
         st.success("**Conclusion:** Reject the null hypothesis. There is significant evidence of a difference or dependence.")
@@ -78,6 +78,8 @@ def goodness_of_fit_test():
     observed_values = st.data_editor(observed_df, use_container_width=True, key="observed_data")
     expected_values = st.data_editor(expected_df, use_container_width=True, key="expected_data")
 
+    alpha = st.slider("Significance Level (α)", min_value=0.01, max_value=0.20, value=0.05, step=0.01)
+
     if st.button("Run Goodness of Fit Test"):
         if observed_values.empty or expected_values.empty:
             st.error("Please enter values for both observed and expected frequencies.")
@@ -91,7 +93,7 @@ def goodness_of_fit_test():
                 st.error("The sum of observed frequencies must match the sum of expected frequencies.")
             else:
                 chi2_stat, p_value = chi_square_goodness_of_fit(observed, expected)
-                display_results(chi2_stat, p_value, len(observed) - 1)
+                display_results(chi2_stat, p_value, len(observed) - 1, alpha=alpha)
 
 def independence_test():
     st.subheader("Chi-Square Test of Independence")
@@ -106,13 +108,15 @@ def independence_test():
     contingency_df = pd.DataFrame(np.zeros((num_rows, num_cols)), columns=[f"Col{i+1}" for i in range(num_cols)])
     contingency_table = st.data_editor(contingency_df, use_container_width=True, key="contingency_table")
 
+    alpha = st.slider("Significance Level (α)", min_value=0.01, max_value=0.20, value=0.05, step=0.01)
+
     if st.button("Run Test of Independence"):
         if contingency_table.empty:
             st.error("Please enter values for the contingency table.")
         else:
             contingency_table = contingency_table.values
             chi2_stat, p_value, dof, expected = chi_square_test_of_independence(contingency_table)
-            display_results(chi2_stat, p_value, dof, expected)
+            display_results(chi2_stat, p_value, dof, expected, alpha=alpha)
 
 if __name__ == "__main__":
     main()
