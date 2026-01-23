@@ -12,3 +12,4 @@ __pycache__/
 *.err
 *.tmp
 .devcontainer
+.python-version
