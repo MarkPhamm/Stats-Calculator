@@ -1,102 +1,185 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import statsmodels.api as sm
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
-import statsmodels.api as sm
 
-def calculate_regression_metrics(X, y):
-    # Add constant to predictor variables (for intercept term in OLS model)
-    X = sm.add_constant(X)
+# ==========================================
+# HELPER: Gradient Descent Function (For Tab 1)
+# ==========================================
+def run_gradient_descent(X, y, learning_rate=0.01, iterations=100):
+    """
+    Performs Gradient Descent to optimize the linear regression parameters m (slope) and b (intercept).
+    """
+    m = 0  # Initial slope
+    b = 0  # Initial intercept
+    n = len(X)
+    history = []
+    cost_history = []
+
+    for _ in range(iterations):
+        y_pred = m * X + b
+        
+        # Calculate gradients (Partial derivatives)
+        dm = (-2/n) * np.sum(X * (y - y_pred))
+        db = (-2/n) * np.sum(y - y_pred)
+        
+        # Update parameters
+        m -= learning_rate * dm
+        b -= learning_rate * db
+        
+        # Calculate Cost (Mean Squared Error)
+        cost = np.mean((y - y_pred) ** 2)
+        
+        # Store state for visualization
+        history.append((m, b))
+        cost_history.append(cost)
     
-    # Fit OLS model
-    model = sm.OLS(y, X)
-    results = model.fit()
+    return history, cost_history
 
-    # Extract R^2, p-values, and coefficients
-    r_squared = results.rsquared
-    p_values = results.pvalues
-    coefficients = results.params
-
-    return results, r_squared, p_values, coefficients
-
+# ==========================================
+# MAIN APP MODULE
+# ==========================================
 def main():
-    st.title("Linear Regression Analysis from File")
+    st.title("Linear Regression Analysis")
 
-    st.subheader("Step 1: Upload your file (.xlsx or .csv)")
+    # Create two tabs: Educational (Theory) and Functional (Practice)
+    tab1, tab2 = st.tabs(["📚 Theory (Gradient Descent)", "🛠️ Practical Analysis"])
 
-    # File upload option
-    uploaded_file = st.file_uploader("Choose a file", type=["csv", "xlsx"])
+    # -------------------------------------------------------------------------
+    # TAB 1: Theory & Visualization (Gradient Descent Animation)
+    # -------------------------------------------------------------------------
+    with tab1:
+        st.header("How Linear Regression 'Learns'")
+        st.markdown(r"""
+        Linear Regression models ($y = mx + b$) find the best-fitting line by minimizing the error between predictions and actual values. 
+        This optimization process is often performed using an algorithm called **Gradient Descent**.
+        """)
 
-    if uploaded_file is not None:
-        # Load the file into a DataFrame
-        if uploaded_file.name.endswith(".csv"):
-            df = pd.read_csv(uploaded_file)
-        else:
-            df = pd.read_excel(uploaded_file)
+        col_input, col_plot = st.columns([1, 2])
 
-        # Fill missing values (NaN) with the median of each column
-        df = df.fillna(df.median(numeric_only=True))
+        with col_input:
+            st.subheader("Simulation Configuration")
+            # Synthetic Data Parameters
+            n_points = st.slider("Number of Data Points", 10, 100, 30)
+            noise = st.slider("Noise Level", 0.0, 5.0, 1.0)
+            
+            st.markdown("---")
+            st.write("**Hyperparameters:**")
+            lr = st.slider("Learning Rate", 0.001, 0.1, 0.01, format="%.3f")
+            iters = st.slider("Iterations (Steps)", 10, 100, 50)
+            
+            run_btn = st.button("Run Simulation")
 
-        # Show first 5 rows of the dataset
-        st.write("First 5 rows of the dataset (NaN values filled with column medians):")
-        st.dataframe(df.head())
+        with col_plot:
+            # Generate Synthetic Data for Visualization
+            np.random.seed(42)
+            X_vis = 2 * np.random.rand(n_points)
+            y_vis = 4 + 3 * X_vis + np.random.randn(n_points) * noise
 
-        # Step 2: Let the user choose the target column
-        st.subheader("Step 2: Select the target column for regression")
-        target_column = st.selectbox("Choose the target column (dependent variable):", df.columns)
+            # Placeholders for dynamic plotting
+            plot_placeholder = st.empty()
 
-        # Step 3: Select predictor columns (all other numeric columns except the target)
-        predictor_columns = st.multiselect(
-            "Choose predictor columns (independent variables):",
-            [col for col in df.columns if col != target_column and np.issubdtype(df[col].dtype, np.number)]
-        )
+            if run_btn:
+                history, cost_history = run_gradient_descent(X_vis, y_vis, lr, iters)
+                
+                # Animation Loop
+                for i in range(len(history)):
+                    m_curr, b_curr = history[i]
+                    
+                    # Create plot figure
+                    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4))
+                    
+                    # Subplot 1: Regression Line fitting the data
+                    ax1.scatter(X_vis, y_vis, color='blue', alpha=0.6, label='Data Points')
+                    ax1.plot(X_vis, m_curr * X_vis + b_curr, color='red', linewidth=2, label='Regression Line')
+                    ax1.set_title(f"Step {i+1}: y = {m_curr:.2f}x + {b_curr:.2f}")
+                    ax1.set_ylim(0, max(y_vis) + 2)
+                    ax1.legend()
+                    
+                    # Subplot 2: Cost Function (Loss) decreasing
+                    ax2.plot(range(i+1), cost_history[:i+1], color='orange', linewidth=2)
+                    ax2.set_title(f"Cost (MSE): {cost_history[i]:.4f}")
+                    ax2.set_xlabel("Iteration")
+                    ax2.set_ylabel("Loss")
+                    
+                    # Render plot
+                    plot_placeholder.pyplot(fig)
+                    plt.close(fig) # Clear memory
+                
+                st.success("Gradient Descent Optimization Completed!")
+            else:
+                # Show initial state before running
+                fig, ax = plt.subplots(figsize=(6, 4))
+                ax.scatter(X_vis, y_vis, label='Data Points')
+                ax.set_title("Original Data")
+                ax.legend()
+                plot_placeholder.pyplot(fig)
 
-        if len(predictor_columns) > 0 and target_column is not None:
-            # Split into X (predictors) and y (target)
-            X = df[predictor_columns]
-            y = df[target_column]
+    # -------------------------------------------------------------------------
+    # TAB 2: Practical Analysis (Real File Upload)
+    # -------------------------------------------------------------------------
+    with tab2:
+        st.header("Linear Regression on Real Data")
+        
+        uploaded_file = st.file_uploader("Upload CSV or Excel File", type=["csv", "xlsx"])
 
-            # Step 4: Perform linear regression
-            st.subheader("Step 3: Run Linear Regression")
-            if st.button("Run Regression"):
-                # Split into training and test sets
+        if uploaded_file is not None:
+            # Data Loading
+            if uploaded_file.name.endswith(".csv"):
+                df = pd.read_csv(uploaded_file)
+            else:
+                df = pd.read_excel(uploaded_file)
+            
+            # Simple Preprocessing: Fill missing numeric values with median
+            df = df.fillna(df.median(numeric_only=True))
+            st.write("Data Preview:", df.head())
+
+            # Feature Selection
+            target = st.selectbox("Select Target Variable (Y)", df.columns)
+            
+            # Filter valid numeric features excluding the target
+            numeric_cols = df.select_dtypes(include=['float64', 'int64']).columns.tolist()
+            if target in numeric_cols: numeric_cols.remove(target)
+            
+            features = st.multiselect("Select Feature Variables (X)", numeric_cols)
+
+            if features and st.button("Train Linear Model"):
+                X = df[features]
+                y = df[target]
+
+                # Train/Test Split
                 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-                # Fit the linear regression model
+                # Train Model (Scikit-Learn)
                 model = LinearRegression()
                 model.fit(X_train, y_train)
-
-                # Predictions
                 y_pred = model.predict(X_test)
 
-                # Calculate metrics
+                # Performance Metrics
                 rmse = np.sqrt(mean_squared_error(y_test, y_pred))
                 r2 = r2_score(y_test, y_pred)
 
-                # OLS metrics from statsmodels
-                ols_results, ols_r_squared, p_values, coefficients = calculate_regression_metrics(X_train, y_train)
-
-                # Display metrics
-                st.write(f"### Regression Metrics:")
-                st.write(f"**R² (Training Set):** {r2:.4f}")
-                st.write(f"**RMSE (Test Set):** {rmse:.4f}")
-
-                # OLS summary
-                st.write(f"### OLS Model Summary:")
-                st.write(ols_results.summary())
-
-                # Display p-values and coefficients in two columns
                 col1, col2 = st.columns(2)
+                col1.metric("R² Score (Goodness of Fit)", f"{r2:.4f}")
+                col2.metric("RMSE (Root Mean Squared Error)", f"{rmse:.4f}")
+
+                # Visualization: Actual vs Predicted
+                fig, ax = plt.subplots()
+                ax.scatter(y_test, y_pred, alpha=0.7)
+                ax.plot([y.min(), y.max()], [y.min(), y.max()], 'r--', lw=2, label='Perfect Prediction')
+                ax.set_xlabel("Actual Values")
+                ax.set_ylabel("Predicted Values")
+                ax.set_title("Actual vs Predicted")
+                ax.legend()
+                st.pyplot(fig)
                 
-                with col1:
-                    st.write(f"**P-values:**")
-                    st.dataframe(p_values, width=300)  # Adjust width as needed
-                
-                with col2:
-                    st.write(f"**Coefficients:**")
-                    st.dataframe(coefficients, width=300)  # Adjust width as needed
-                    
-if __name__ == "__main__":
-    main()
+                # Detailed Statistical Summary (Statsmodels)
+                st.subheader("Statistical Summary (OLS)")
+                X_const = sm.add_constant(X_train) # Add intercept term
+                ols = sm.OLS(y_train, X_const).fit()
+                st.write(ols.summary())
