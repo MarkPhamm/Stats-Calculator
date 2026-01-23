@@ -1,43 +1,319 @@
 import streamlit as st
-
 import utils
 
 # Set up Streamlit page configuration
 st.set_page_config(
-    page_title="Streamlit Statistics Calculator",
+    page_title="Statistics Calculator",
     page_icon="📊",
     initial_sidebar_state="expanded",
+    layout="wide",
     menu_items={
         'Get Help': 'https://www.linkedin.com/in/minhbphamm/',
         'Report a bug': "https://www.linkedin.com/in/minhbphamm/",
-        'About': "# This an comprehensive Statistics Calculator"
+        'About': "# Comprehensive Statistics Calculator"
     }
 )
 
+# Apply custom CSS styling
 utils.add_custom_css()
 
-# Create a two-column layout
-col1, col2 = st.columns(2)
+# ==========================================
+# HEADER SECTION
+# ==========================================
+st.markdown(
+    """
+    <div style="margin-bottom: 30px;">
+        <h1>Statistics Calculator</h1>
+        <p style="color: #94A3B8; font-size: 1.1rem; margin-top: 10px;">
+            Built by <strong style="color: #00AEEF; font-size: 1.2rem;">Mark Pham</strong> and <strong style="color: #00AEEF; font-size: 1.2rem;">Hoan Nguyen</strong>
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
-# Display a resized image in the first column
+# ==========================================
+# HERO SECTION
+# ==========================================
+st.markdown(
+    """
+    <div style="
+        background: linear-gradient(135deg, #001E32 0%, #00395D 100%);
+        border: 1px solid rgba(0, 174, 239, 0.3);
+        border-radius: 20px;
+        padding: 50px 40px;
+        margin: 30px 0;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    ">
+        <h1 style="
+            font-size: 1.5rem;
+            color: #FFFFFF;
+            margin: 0 0 15px 0;
+            text-align: center;
+            border: none;
+            padding-left: 0;
+        ">
+            Welcome to the Statistics Calculator App!
+        </h1>
+        <p style="
+            font-size: 1.1rem;
+            color: #CBD5E1;
+            line-height: 1.8;
+            text-align: center;
+            margin: 0;
+        ">
+            This comprehensive tool helps you master <strong style="color: #00AEEF;">statistical analysis</strong> 
+            and <strong style="color: #00AEEF;">machine learning</strong> with interactive calculations, 
+            visualizations, and real-world applications.
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+# ==========================================
+# QUICK GUIDE
+# ==========================================
+st.markdown("## 🚀 Quick Guide")
+
+col1, col2, col3 = st.columns(3)
+
 with col1:
-    st.image("images/image.jpg", width=200)  # Adjust the width as needed
+    st.markdown(
+        """
+        <div style="
+            background: linear-gradient(145deg, #0F172A, #0B1120);
+            border-left: 4px solid #00AEEF;
+            border-radius: 12px;
+            padding: 25px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        ">
+            <div style="font-size: 2.5rem; margin-bottom: 15px;">📊</div>
+            <div style="font-weight: 600; color: #E0E7FF; font-size: 1.1rem; margin-bottom: 10px;">
+                Explore Topics
+            </div>
+            <div style="color: #CBD5E1; font-size: 0.95rem; line-height: 1.6;">
+                Select a topic from the sidebar to explore different statistical methods or ML categories.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-# Display header and text in the second column
 with col2:
-    st.header("Statistics Calculator")
-    st.markdown("By [Minh (Mark) Pham](https://www.linkedin.com/in/minhbphamm/)")
+    st.markdown(
+        """
+        <div style="
+            background: linear-gradient(145deg, #0F172A, #0B1120);
+            border-left: 4px solid #00AEEF;
+            border-radius: 12px;
+            padding: 25px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        ">
+            <div style="font-size: 2.5rem; margin-bottom: 15px;">📝</div>
+            <div style="font-weight: 600; color: #E0E7FF; font-size: 1.1rem; margin-bottom: 10px;">
+                Input Data
+            </div>
+            <div style="color: #CBD5E1; font-size: 0.95rem; line-height: 1.6;">
+                Follow the prompts to input your data or parameters for analysis.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-st.markdown("""
-    <h2 style="text-align:center;">Welcome to the Statistics Calculator App!</h2>
-    <p style="font-size:18px;">👋 Hi y'all, it's Mark here! I'm a BIS and Mathematics student at <strong>Texas Christian University</strong>. I noticed that many TCU students are struggling with the <strong>INSC 20153</strong> and <strong>MATH 30853</strong> courses. That's why I designed this app to help you easily perform various statistical calculations and explore machine learning concepts.</p>
-    
-    <h3 style="margin-top:30px;">🚀 Quick Guide on How to Use the App:</h3>
-    <ul style="font-size:16px; line-height:1.6;">
-        <li>📊 Select a topic from the sidebar to explore different statistical methods or ml categories.</li>
-        <li>📝 Follow the prompts to input your data or parameters.</li>
-        <li>📈 View the results and visualizations generated by the app.</li>
-    </ul>
-    
-    <p style="font-size:18px; margin-top:20px;">💡 Feel free to <strong>reach out</strong> for help or <strong>report any bugs</strong> using the links in the menu!</p>
-""", unsafe_allow_html=True)
+with col3:
+    st.markdown(
+        """
+        <div style="
+            background: linear-gradient(145deg, #0F172A, #0B1120);
+            border-left: 4px solid #00AEEF;
+            border-radius: 12px;
+            padding: 25px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        ">
+            <div style="font-size: 2.5rem; margin-bottom: 15px;">📈</div>
+            <div style="font-weight: 600; color: #E0E7FF; font-size: 1.1rem; margin-bottom: 10px;">
+                View Results
+            </div>
+            <div style="color: #CBD5E1; font-size: 0.95rem; line-height: 1.6;">
+                See the results and visualizations generated by the app.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+# ==========================================
+# FEATURE SECTIONS
+# ==========================================
+utils.render_section_divider()
+
+st.markdown("## 📚 What You Can Do")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.markdown(
+        """
+        <div style="
+            background: linear-gradient(145deg, rgba(0, 174, 239, 0.08), rgba(0, 174, 239, 0.02));
+            border: 1px solid rgba(0, 174, 239, 0.2);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+        ">
+            <h3 style="color: #00AEEF; border-left: none; margin-top: 0;">📖 Statistical Theory</h3>
+            <ul style="color: #CBD5E1; line-height: 1.8; font-size: 0.95rem;">
+                <li>Learn statistical vocabulary</li>
+                <li>Chart principles</li>
+                <li>Central Limit Theorem</li>
+                <li>Law of Large Numbers</li>
+                <li>Probability concepts</li>
+            </ul>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+with col2:
+    st.markdown(
+        """
+        <div style="
+            background: linear-gradient(145deg, rgba(0, 174, 239, 0.08), rgba(0, 174, 239, 0.02));
+            border: 1px solid rgba(0, 174, 239, 0.2);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+        ">
+            <h3 style="color: #00AEEF; border-left: none; margin-top: 0;">📊 Distributions</h3>
+            <ul style="color: #CBD5E1; line-height: 1.8; font-size: 0.95rem;">
+                <li>Binomial & Poisson</li>
+                <li>Normal distribution</li>
+                <li>Uniform distribution</li>
+                <li>Exponential distribution</li>
+                <li>Visualize probabilities</li>
+            </ul>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+with col3:
+    st.markdown(
+        """
+        <div style="
+            background: linear-gradient(145deg, rgba(0, 174, 239, 0.08), rgba(0, 174, 239, 0.02));
+            border: 1px solid rgba(0, 174, 239, 0.2);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+        ">
+            <h3 style="color: #00AEEF; border-left: none; margin-top: 0;">🎯 Confidence Intervals</h3>
+            <ul style="color: #CBD5E1; line-height: 1.8; font-size: 0.95rem;">
+                <li>Margin of error</li>
+                <li>Sample size calculation</li>
+                <li>Confidence levels</li>
+                <li>Inverse calculations</li>
+                <li>Estimation precision</li>
+            </ul>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.markdown(
+        """
+        <div style="
+            background: linear-gradient(145deg, rgba(0, 174, 239, 0.08), rgba(0, 174, 239, 0.02));
+            border: 1px solid rgba(0, 174, 239, 0.2);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+        ">
+            <h3 style="color: #00AEEF; border-left: none; margin-top: 0;">🧪 Hypothesis Testing</h3>
+            <ul style="color: #CBD5E1; line-height: 1.8; font-size: 0.95rem;">
+                <li>T-tests and Z-tests</li>
+                <li>Chi-Square test</li>
+                <li>ANOVA analysis</li>
+                <li>Proportions testing</li>
+                <li>Statistical decisions</li>
+            </ul>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+with col2:
+    st.markdown(
+        """
+        <div style="
+            background: linear-gradient(145deg, rgba(0, 174, 239, 0.08), rgba(0, 174, 239, 0.02));
+            border: 1px solid rgba(0, 174, 239, 0.2);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+        ">
+            <h3 style="color: #00AEEF; border-left: none; margin-top: 0;">🤖 Machine Learning</h3>
+            <ul style="color: #CBD5E1; line-height: 1.8; font-size: 0.95rem;">
+                <li>Linear regression</li>
+                <li>Logistic regression</li>
+                <li>Decision trees</li>
+                <li>K-means clustering</li>
+                <li>PCA reduction</li>
+            </ul>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+with col3:
+    st.markdown(
+        """
+        <div style="
+            background: linear-gradient(145deg, rgba(0, 174, 239, 0.08), rgba(0, 174, 239, 0.02));
+            border: 1px solid rgba(0, 174, 239, 0.2);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+        ">
+            <h3 style="color: #00AEEF; border-left: none; margin-top: 0;">🔍 Data Exploration</h3>
+            <ul style="color: #CBD5E1; line-height: 1.8; font-size: 0.95rem;">
+                <li>Descriptive statistics</li>
+                <li>Correlation analysis</li>
+                <li>Missing values</li>
+                <li>Distribution plots</li>
+                <li>Data quality reports</li>
+            </ul>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+# ==========================================
+# SUPPORT SECTION
+# ==========================================
+utils.render_section_divider()
+
+utils.render_info_box(
+    title="Need Help?",
+    content="Feel free to reach out for help or report any bugs using the links in the menu. Questions about any topic? Check the help menu above!",
+    icon="💡"
+)
+
+# ==========================================
+# FOOTER
+# ==========================================
+utils.render_footer()
