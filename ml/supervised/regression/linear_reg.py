@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
 import statsmodels.api as sm
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
@@ -144,7 +143,8 @@ def main():
             
             # Filter valid numeric features excluding the target
             numeric_cols = df.select_dtypes(include=['float64', 'int64']).columns.tolist()
-            if target in numeric_cols: numeric_cols.remove(target)
+            if target in numeric_cols:
+                numeric_cols.remove(target)
             
             features = st.multiselect("Select Feature Variables (X)", numeric_cols)
 

@@ -2,7 +2,6 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 from sklearn.datasets import make_blobs
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
@@ -152,7 +151,7 @@ def main():
                     # Visualization
                     fig_res, ax_res = plt.subplots()
                     # Plot points
-                    scatter = ax_res.scatter(X_real[:, 0], X_real[:, 1], c=y_kmeans, cmap='viridis', s=50, alpha=0.6)
+                    ax_res.scatter(X_real[:, 0], X_real[:, 1], c=y_kmeans, cmap='viridis', s=50, alpha=0.6)
                     # Plot centers
                     centers = km_final.cluster_centers_
                     ax_res.scatter(centers[:, 0], centers[:, 1], c='red', s=200, marker='X', label='Centroids')

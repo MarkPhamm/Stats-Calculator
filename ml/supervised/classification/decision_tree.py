@@ -6,7 +6,7 @@ import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.datasets import make_moons
-from sklearn.metrics import accuracy_score, classification_report
+from sklearn.metrics import accuracy_score
 
 def main():
     st.title("Decision Tree Classifier")
@@ -83,7 +83,8 @@ def main():
             target_col = st.selectbox("Select Target (Label)", df.columns, key="dt_target")
             
             numeric_cols = df.select_dtypes(include=['float64', 'int64']).columns.tolist()
-            if target_col in numeric_cols: numeric_cols.remove(target_col)
+            if target_col in numeric_cols:
+                numeric_cols.remove(target_col)
             
             feature_cols = st.multiselect("Select Features (Input)", numeric_cols, key="dt_features")
             

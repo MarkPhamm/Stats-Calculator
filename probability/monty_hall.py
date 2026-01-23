@@ -1,7 +1,6 @@
 import streamlit as st
 import random
 import matplotlib.pyplot as plt
-import time
 
 def monty_hall_simulation(num_simulations):
     switch_wins = []

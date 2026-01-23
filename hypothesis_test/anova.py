@@ -57,7 +57,7 @@ def main():
             if p_value < alpha:
                 st.error(f"Conclusion: Reject Null Hypothesis (H₀). There is a significant difference between the group means (α={alpha}).")
             else:
-                st.success(f"Conclusion: Fail to Reject Null Hypothesis (H₀). No significant difference found between group means.")
+                st.success("Conclusion: Fail to Reject Null Hypothesis (H₀). No significant difference found between group means.")
 
             # 3. Visualization (Boxplot)
             st.markdown("#### Distribution Visualization")

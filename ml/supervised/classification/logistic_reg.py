@@ -86,7 +86,8 @@ def main():
 
             # Feature Selection (Numeric Only)
             numeric_cols = df.select_dtypes(include=['float64', 'int64']).columns.tolist()
-            if target_col in numeric_cols: numeric_cols.remove(target_col)
+            if target_col in numeric_cols:
+                numeric_cols.remove(target_col)
             
             feature_cols = st.multiselect("Select Feature Variables (X)", numeric_cols, key="log_x")
 

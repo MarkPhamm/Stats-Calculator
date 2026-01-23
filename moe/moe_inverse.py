@@ -1,8 +1,5 @@
 import streamlit as st
-import math
 from scipy import stats
-import numpy as np
-import matplotlib.pyplot as plt
 
 def main():
     def calculate_n_mean_known(z_score, std_dev, moe):

@@ -4,7 +4,6 @@ Modern UI/UX components with dark theme and smooth animations
 """
 
 import streamlit as st
-import pandas as pd
 
 
 def add_custom_css():
