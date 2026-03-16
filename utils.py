@@ -434,7 +434,7 @@ def render_footer():
             font-size: 0.95rem;
         ">
             <p style="margin-bottom: 15px;">
-                Built with ❤️ by Mark Pham and Hoan Nguyen
+                Built by Mark Pham, Hoan Nguyen and Gina Nguyen
             </p>
             <div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
                 <a href="https://www.linkedin.com/in/minhbphamm/" target="_blank" style="
