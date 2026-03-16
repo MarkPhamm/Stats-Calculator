@@ -1,4 +1,5 @@
 import streamlit as st
+
 import utils
 
 # Set up Streamlit page configuration
@@ -8,10 +9,10 @@ st.set_page_config(
     initial_sidebar_state="expanded",
     layout="wide",
     menu_items={
-        'Get Help': 'https://www.linkedin.com/in/minhbphamm/',
-        'Report a bug': "https://www.linkedin.com/in/minhbphamm/",
-        'About': "# Comprehensive Statistics Calculator"
-    }
+        "Get Help": "https://www.linkedin.com/in/minhbphamm/",
+        "Report a bug": "https://www.linkedin.com/in/minhbphamm/",
+        "About": "# Comprehensive Statistics Calculator",
+    },
 )
 
 # Apply custom CSS styling
@@ -310,7 +311,7 @@ utils.render_section_divider()
 utils.render_info_box(
     title="Need Help?",
     content="Feel free to reach out for help or report any bugs using the links in the menu. Questions about any topic? Check the help menu above!",
-    icon="💡"
+    icon="💡",
 )
 
 # ==========================================

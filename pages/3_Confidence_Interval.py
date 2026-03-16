@@ -1,8 +1,8 @@
 import streamlit as st
-import utils
 
 import moe.moe
 import moe.moe_inverse
+import utils
 
 # Set up Streamlit page configuration
 st.set_page_config(
@@ -11,10 +11,10 @@ st.set_page_config(
     initial_sidebar_state="expanded",
     layout="wide",
     menu_items={
-        'Get Help': 'https://www.linkedin.com/in/minhbphamm/',
-        'Report a bug': "https://www.linkedin.com/in/minhbphamm/",
-        'About': "# Comprehensive Statistics Calculator"
-    }
+        "Get Help": "https://www.linkedin.com/in/minhbphamm/",
+        "Report a bug": "https://www.linkedin.com/in/minhbphamm/",
+        "About": "# Comprehensive Statistics Calculator",
+    },
 )
 
 # Apply custom CSS styling
@@ -30,7 +30,7 @@ st.sidebar.header("📊 Margin of Error")
 option = st.sidebar.radio(
     "Choose an option",
     ["📐 Margin of Error", "🔄 Margin of Error Inverse"],
-    key="moe_option"
+    key="moe_option",
 )
 
 # ==========================================
@@ -38,7 +38,7 @@ option = st.sidebar.radio(
 # ==========================================
 utils.render_header(
     title="🎯 Confidence Intervals & Margin of Error",
-    subtitle="Calculate confidence intervals and margin of error for your sample data"
+    subtitle="Calculate confidence intervals and margin of error for your sample data",
 )
 
 # ==========================================
@@ -47,7 +47,7 @@ utils.render_header(
 utils.render_info_box(
     title="What is Margin of Error?",
     content="The margin of error (MOE) measures the maximum expected difference between an estimated parameter and the true population parameter. It depends on sample size, confidence level, and population variability. Use this tool to calculate MOE or find the required sample size.",
-    icon="📐"
+    icon="📐",
 )
 
 # ==========================================
@@ -116,11 +116,7 @@ st.markdown("### 📊 Confidence Levels & Z-Scores")
 
 col1, col2, col3 = st.columns(3)
 
-confidence_levels = [
-    ("90%", "1.645"),
-    ("95%", "1.960"),
-    ("99%", "2.576")
-]
+confidence_levels = [("90%", "1.645"), ("95%", "1.960"), ("99%", "2.576")]
 
 for idx, (conf, z_score) in enumerate(confidence_levels):
     cols = [col1, col2, col3]

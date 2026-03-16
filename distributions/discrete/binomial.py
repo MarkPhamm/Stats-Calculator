@@ -1,7 +1,8 @@
-import streamlit as st
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import streamlit as st
 from scipy.stats import binom
+
 
 def calculate_binomial_distribution_stats(n: int, p: float) -> tuple[float, float]:
     """
@@ -19,6 +20,7 @@ def calculate_binomial_distribution_stats(n: int, p: float) -> tuple[float, floa
     std_dev = np.sqrt(variance)
     return mean, std_dev
 
+
 def plot_binomial_distribution(n: int, p: float, s_min: int, s_max: int) -> None:
     """
     Plot the binomial distribution with highlighted range.
@@ -31,22 +33,29 @@ def plot_binomial_distribution(n: int, p: float, s_min: int, s_max: int) -> None
     """
     x_vals = np.arange(0, n + 1)
     y_vals = binom.pmf(x_vals, n, p)
-    
+
     fig, ax = plt.subplots()
     ax.bar(x_vals, y_vals, label="Binomial Distribution", alpha=0.7)
-    
+
     mask = (x_vals >= s_min) & (x_vals <= s_max)
-    ax.bar(x_vals[mask], y_vals[mask], color='blue', alpha=0.5, label=f"P({s_min} <= X <= {s_max})")
-    
-    ax.axvline(x=s_min, color='red', linestyle='--', label=f's_min = {s_min}')
-    ax.axvline(x=s_max, color='green', linestyle='--', label=f's_max = {s_max}')
-    
-    ax.set_title(f'Binomial Distribution (n={n}, p={p})')
-    ax.set_xlabel('Number of Successes')
-    ax.set_ylabel('Probability Mass')
+    ax.bar(
+        x_vals[mask],
+        y_vals[mask],
+        color="blue",
+        alpha=0.5,
+        label=f"P({s_min} <= X <= {s_max})",
+    )
+
+    ax.axvline(x=s_min, color="red", linestyle="--", label=f"s_min = {s_min}")
+    ax.axvline(x=s_max, color="green", linestyle="--", label=f"s_max = {s_max}")
+
+    ax.set_title(f"Binomial Distribution (n={n}, p={p})")
+    ax.set_xlabel("Number of Successes")
+    ax.set_ylabel("Probability Mass")
     ax.legend()
-    
+
     st.pyplot(fig)
+
 
 def main():
     st.title("Binomial Distribution Calculator")
@@ -56,10 +65,28 @@ def main():
     """)
 
     n = st.number_input("Enter the Number of Trials (n)", value=10, step=1, min_value=1)
-    p = st.number_input("Enter the Probability of Success (p)", value=0.5, step=0.01, min_value=0.0, max_value=1.0)
+    p = st.number_input(
+        "Enter the Probability of Success (p)",
+        value=0.5,
+        step=0.01,
+        min_value=0.0,
+        max_value=1.0,
+    )
 
-    s_min = st.number_input("Enter the Minimum Number of Successes (s_min)", value=0, step=1, min_value=0, max_value=n)
-    s_max = st.number_input("Enter the Maximum Number of Successes (s_max)", value=n, step=1, min_value=s_min, max_value=n)
+    s_min = st.number_input(
+        "Enter the Minimum Number of Successes (s_min)",
+        value=0,
+        step=1,
+        min_value=0,
+        max_value=n,
+    )
+    s_max = st.number_input(
+        "Enter the Maximum Number of Successes (s_max)",
+        value=n,
+        step=1,
+        min_value=s_min,
+        max_value=n,
+    )
 
     mean, std_dev = calculate_binomial_distribution_stats(n, p)
 
@@ -75,12 +102,14 @@ def main():
     st.success(f"Probability P({s_min} <= X <= {s_max}): {p_range:.4f}")
 
     st.header("Calculate P(X = x) for specific values")
-    x_values_input = st.text_input("Enter values of x (separated by commas)", value="0, 1, 2")
-    
+    x_values_input = st.text_input(
+        "Enter values of x (separated by commas)", value="0, 1, 2"
+    )
+
     try:
         x_values = [int(x.strip()) for x in x_values_input.split(",")]
         valid_x_values = [x for x in x_values if 0 <= x <= n]
-        
+
         if valid_x_values:
             for x in valid_x_values:
                 prob = binom.pmf(x, n, p)
@@ -88,9 +117,12 @@ def main():
         else:
             st.warning("Please enter valid x values between 0 and n.")
     except ValueError:
-        st.error("Invalid input for x values. Please enter integers separated by commas.")
-    
+        st.error(
+            "Invalid input for x values. Please enter integers separated by commas."
+        )
+
     plot_binomial_distribution(n, p, s_min, s_max)
+
 
 if __name__ == "__main__":
     main()

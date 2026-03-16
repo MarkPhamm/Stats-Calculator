@@ -1,17 +1,18 @@
 import streamlit as st
-import utils
 
-# Import theory modules
-import theory.chart
-import theory.vocab
+import probability.monty_hall
+
+# Import probability modules
+import probability.probability
 
 # Import theorem modules
 import theorem.clt
 import theorem.llon
 
-# Import probability modules
-import probability.probability
-import probability.monty_hall
+# Import theory modules
+import theory.chart
+import theory.vocab
+import utils
 
 # Set up Streamlit page configuration
 st.set_page_config(
@@ -20,10 +21,10 @@ st.set_page_config(
     initial_sidebar_state="expanded",
     layout="wide",
     menu_items={
-        'Get Help': 'https://www.linkedin.com/in/minhbphamm/',
-        'Report a bug': "https://www.linkedin.com/in/minhbphamm/",
-        'About': "# Comprehensive Statistics Calculator"
-    }
+        "Get Help": "https://www.linkedin.com/in/minhbphamm/",
+        "Report a bug": "https://www.linkedin.com/in/minhbphamm/",
+        "About": "# Comprehensive Statistics Calculator",
+    },
 )
 
 # Apply custom CSS styling
@@ -39,7 +40,7 @@ st.sidebar.header("📚 Theory Topics")
 topic = st.sidebar.radio(
     "Choose a statistical topic",
     ("📖 Statistical Theory", "📐 Statistical Theorems", "🎲 Probability Concepts"),
-    key="theory_topic"
+    key="theory_topic",
 )
 
 option = None
@@ -49,19 +50,19 @@ if topic == "📖 Statistical Theory":
     option = st.sidebar.radio(
         "Theory Topics",
         ["Statistical Vocabulary", "Chart Principles"],
-        key="theory_option"
+        key="theory_option",
     )
 elif topic == "📐 Statistical Theorems":
     option = st.sidebar.radio(
         "Theorems",
         ["Central Limit Theorem", "Law of Large Numbers"],
-        key="theorem_option"
+        key="theorem_option",
     )
 elif topic == "🎲 Probability Concepts":
     option = st.sidebar.radio(
         "Probability Concepts",
         ["Probability Calculations", "Monty Hall Problem"],
-        key="prob_option"
+        key="prob_option",
     )
 
 # ==========================================
@@ -69,7 +70,7 @@ elif topic == "🎲 Probability Concepts":
 # ==========================================
 utils.render_header(
     title="📚 Statistical Theory & Concepts",
-    subtitle="Master the fundamentals of statistics, probability, and key theoretical concepts"
+    subtitle="Master the fundamentals of statistics, probability, and key theoretical concepts",
 )
 
 # ==========================================
@@ -78,7 +79,7 @@ utils.render_header(
 utils.render_info_box(
     title="About This Section",
     content="Explore the theoretical foundations of statistics. From basic vocabulary to advanced theorems, this section helps you understand the why behind statistical methods. Select a topic from the sidebar to dive deeper.",
-    icon="🔍"
+    icon="🔍",
 )
 
 utils.render_section_divider()
