@@ -18,10 +18,10 @@ st.set_page_config(
     initial_sidebar_state="expanded",
     layout="wide",
     menu_items={
-        'Get Help': 'https://www.linkedin.com/in/minhbphamm/',
-        'Report a bug': "https://www.linkedin.com/in/minhbphamm/",
-        'About': "# Tree-Based Machine Learning Models"
-    }
+        "Get Help": "https://www.linkedin.com/in/minhbphamm/",
+        "Report a bug": "https://www.linkedin.com/in/minhbphamm/",
+        "About": "# Tree-Based Machine Learning Models",
+    },
 )
 
 # Apply custom CSS
@@ -54,7 +54,7 @@ selected = st.sidebar.radio("Choose a Model", model_options, key="tree_model_sel
 try:
     utils.render_header(
         title="🌲 Tree-Based Machine Learning",
-        subtitle="Explore ensemble tree algorithms: Random Forest, Gradient Boosting, XGBoost, LightGBM, AdaBoost & CatBoost"
+        subtitle="Explore ensemble tree algorithms: Random Forest, Gradient Boosting, XGBoost, LightGBM, AdaBoost & CatBoost",
     )
 except AttributeError:
     st.title("🌲 Tree-Based Machine Learning Models")
@@ -63,7 +63,6 @@ except AttributeError:
 # OVERVIEW PAGE
 # ==========================================
 if selected == "🏠 Overview":
-
     try:
         utils.render_info_box(
             title="What Are Tree-Based Models?",
@@ -72,10 +71,12 @@ if selected == "🏠 Overview":
                 "They split data step-by-step based on feature values, capturing complex non-linear "
                 "patterns while remaining relatively interpretable."
             ),
-            icon="🌳"
+            icon="🌳",
         )
     except AttributeError:
-        st.info("Tree-based algorithms build models as decision trees or ensembles of trees. They split data step-by-step based on feature values, capturing complex non-linear patterns while remaining relatively interpretable.")
+        st.info(
+            "Tree-based algorithms build models as decision trees or ensembles of trees. They split data step-by-step based on feature values, capturing complex non-linear patterns while remaining relatively interpretable."
+        )
 
     st.markdown("---")
     st.markdown("### 🗺️ Model Family Overview")
@@ -83,12 +84,42 @@ if selected == "🏠 Overview":
     col1, col2, col3 = st.columns(3)
 
     cards = [
-        ("🌲", "Random Forest", "Bagging", "Trains many independent trees on bootstrap samples; averages predictions. Reduces variance."),
-        ("📈", "Gradient Boosting", "Boosting", "Trains trees sequentially, each correcting residual errors of the prior ensemble."),
-        ("🔁", "AdaBoost", "Boosting", "Re-weights training samples — hard samples get higher weights each round."),
-        ("⚡", "XGBoost", "Boosting+", "Regularised gradient boosting with second-order gradients, pruning, and parallelism."),
-        ("🌿", "LightGBM", "Boosting+", "Leaf-wise growth + histogram binning = extremely fast on large/high-dim datasets."),
-        ("🐱", "CatBoost", "Boosting+", "Ordered boosting + native categorical handling. Minimal preprocessing needed."),
+        (
+            "🌲",
+            "Random Forest",
+            "Bagging",
+            "Trains many independent trees on bootstrap samples; averages predictions. Reduces variance.",
+        ),
+        (
+            "📈",
+            "Gradient Boosting",
+            "Boosting",
+            "Trains trees sequentially, each correcting residual errors of the prior ensemble.",
+        ),
+        (
+            "🔁",
+            "AdaBoost",
+            "Boosting",
+            "Re-weights training samples — hard samples get higher weights each round.",
+        ),
+        (
+            "⚡",
+            "XGBoost",
+            "Boosting+",
+            "Regularised gradient boosting with second-order gradients, pruning, and parallelism.",
+        ),
+        (
+            "🌿",
+            "LightGBM",
+            "Boosting+",
+            "Leaf-wise growth + histogram binning = extremely fast on large/high-dim datasets.",
+        ),
+        (
+            "🐱",
+            "CatBoost",
+            "Boosting+",
+            "Ordered boosting + native categorical handling. Minimal preprocessing needed.",
+        ),
     ]
 
     cols = [col1, col2, col3, col1, col2, col3]
@@ -119,13 +150,55 @@ if selected == "🏠 Overview":
     st.markdown("### 📊 Quick Comparison")
 
     comparison_data = {
-        "Model":             ["Random Forest", "Gradient Boosting", "AdaBoost", "XGBoost", "LightGBM", "CatBoost"],
-        "Training Style":    ["Parallel (Bagging)", "Sequential", "Sequential", "Sequential+Parallel", "Sequential+Parallel", "Sequential"],
-        "Speed":             ["⚡⚡⚡", "⚡⚡", "⚡⚡", "⚡⚡⚡", "⚡⚡⚡⚡", "⚡⚡⚡"],
-        "Accuracy":          ["⭐⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐", "⭐⭐⭐⭐⭐", "⭐⭐⭐⭐⭐", "⭐⭐⭐⭐⭐"],
-        "Ease of Use":       ["🟢 Easy", "🟡 Medium", "🟢 Easy", "🟡 Medium", "🟡 Medium", "🟢 Easy"],
-        "Categorical Data":  ["❌ Manual", "❌ Manual", "❌ Manual", "❌ Manual", "🟡 Partial", "✅ Native"],
-        "Overfitting Risk":  ["Low", "Medium", "High (noisy data)", "Medium (regularised)", "Medium", "Low"],
+        "Model": [
+            "Random Forest",
+            "Gradient Boosting",
+            "AdaBoost",
+            "XGBoost",
+            "LightGBM",
+            "CatBoost",
+        ],
+        "Training Style": [
+            "Parallel (Bagging)",
+            "Sequential",
+            "Sequential",
+            "Sequential+Parallel",
+            "Sequential+Parallel",
+            "Sequential",
+        ],
+        "Speed": ["⚡⚡⚡", "⚡⚡", "⚡⚡", "⚡⚡⚡", "⚡⚡⚡⚡", "⚡⚡⚡"],
+        "Accuracy": [
+            "⭐⭐⭐⭐",
+            "⭐⭐⭐⭐",
+            "⭐⭐⭐",
+            "⭐⭐⭐⭐⭐",
+            "⭐⭐⭐⭐⭐",
+            "⭐⭐⭐⭐⭐",
+        ],
+        "Ease of Use": [
+            "🟢 Easy",
+            "🟡 Medium",
+            "🟢 Easy",
+            "🟡 Medium",
+            "🟡 Medium",
+            "🟢 Easy",
+        ],
+        "Categorical Data": [
+            "❌ Manual",
+            "❌ Manual",
+            "❌ Manual",
+            "❌ Manual",
+            "🟡 Partial",
+            "✅ Native",
+        ],
+        "Overfitting Risk": [
+            "Low",
+            "Medium",
+            "High (noisy data)",
+            "Medium (regularised)",
+            "Medium",
+            "Low",
+        ],
     }
 
     st.table(pd.DataFrame(comparison_data).set_index("Model"))
@@ -149,26 +222,32 @@ if selected == "🏠 Overview":
 # ==========================================
 elif selected == "🌲 Random Forest":
     from tree_based_ml import random_forest
+
     random_forest.main()
 
 elif selected == "📈 Gradient Boosting":
     from tree_based_ml import gradient_boosting
+
     gradient_boosting.main()
 
 elif selected == "🔁 AdaBoost":
     from tree_based_ml import adaboost
+
     adaboost.main()
 
 elif selected == "⚡ XGBoost":
     from tree_based_ml import xgboost_model
+
     xgboost_model.main()
 
 elif selected == "🌿 LightGBM":
     from tree_based_ml import lightgbm_model
+
     lightgbm_model.main()
 
 elif selected == "🐱 CatBoost":
     from tree_based_ml import catboost_model
+
     catboost_model.main()
 
 # ==========================================

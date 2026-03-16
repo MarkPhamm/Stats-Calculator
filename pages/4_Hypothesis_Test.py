@@ -14,10 +14,10 @@ st.set_page_config(
     initial_sidebar_state="expanded",
     layout="wide",
     menu_items={
-        'Get Help': 'https://www.linkedin.com/in/minhbphamm/',
-        'Report a bug': "https://www.linkedin.com/in/minhbphamm/",
-        'About': "# Comprehensive Statistics Calculator"
-    }
+        "Get Help": "https://www.linkedin.com/in/minhbphamm/",
+        "Report a bug": "https://www.linkedin.com/in/minhbphamm/",
+        "About": "# Comprehensive Statistics Calculator",
+    },
 )
 
 # Apply custom CSS styling
@@ -33,7 +33,7 @@ st.sidebar.header("🧪 Test Types")
 test_type = st.sidebar.radio(
     "Select Test Type",
     ("🎯 Hypothesis Test (Mean/Prop)", "📊 Chi-Square Test", "📈 ANOVA Test"),
-    key="hyp_test_type"
+    key="hyp_test_type",
 )
 
 # ==========================================
@@ -41,7 +41,7 @@ test_type = st.sidebar.radio(
 # ==========================================
 utils.render_header(
     title="🧪 Hypothesis Testing",
-    subtitle="Make data-driven decisions using statistical hypothesis tests"
+    subtitle="Make data-driven decisions using statistical hypothesis tests",
 )
 
 # ==========================================
@@ -50,7 +50,7 @@ utils.render_header(
 utils.render_info_box(
     title="What is Hypothesis Testing?",
     content="Hypothesis testing is a statistical method for making decisions about populations based on sample data. We test a null hypothesis (H0) against an alternative hypothesis (H1) to determine if there is significant evidence to reject the null hypothesis.",
-    icon="🔬"
+    icon="🔬",
 )
 
 # ==========================================
@@ -165,7 +165,7 @@ with col1:
         """,
         unsafe_allow_html=True,
     )
-    
+
     st.markdown(
         """
         <div style="
@@ -203,7 +203,7 @@ with col2:
         """,
         unsafe_allow_html=True,
     )
-    
+
     st.markdown(
         """
         <div style="

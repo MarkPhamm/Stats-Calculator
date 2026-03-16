@@ -14,10 +14,10 @@ st.set_page_config(
     initial_sidebar_state="expanded",
     layout="wide",
     menu_items={
-        'Get Help': 'https://www.linkedin.com/in/minhbphamm/',
-        'Report a bug': "https://www.linkedin.com/in/minhbphamm/",
-        'About': "# Comprehensive Statistics Calculator"
-    }
+        "Get Help": "https://www.linkedin.com/in/minhbphamm/",
+        "Report a bug": "https://www.linkedin.com/in/minhbphamm/",
+        "About": "# Comprehensive Statistics Calculator",
+    },
 )
 
 # Apply custom CSS styling
@@ -36,7 +36,7 @@ st.sidebar.header("🤖 Model Configuration")
 ml_category = st.sidebar.radio(
     "1️⃣ Choose Learning Type",
     ["🔵 Supervised Learning", "🟣 Unsupervised Learning"],
-    key="ml_category"
+    key="ml_category",
 )
 
 selected_model = None
@@ -45,27 +45,25 @@ if ml_category == "🔵 Supervised Learning":
     task_type = st.sidebar.selectbox(
         "2️⃣ Choose Task Type",
         ["📊 Regression (Continuous)", "🎯 Classification (Discrete)"],
-        key="task_type"
+        key="task_type",
     )
-    
+
     if task_type == "📊 Regression (Continuous)":
         selected_model = st.sidebar.radio(
-            "3️⃣ Choose Model",
-            ["📈 Linear Regression"],
-            key="regression_model"
+            "3️⃣ Choose Model", ["📈 Linear Regression"], key="regression_model"
         )
     elif task_type == "🎯 Classification (Discrete)":
         selected_model = st.sidebar.radio(
             "3️⃣ Choose Model",
             ["🔵 Logistic Regression", "🌳 Decision Tree Classifier"],
-            key="classification_model"
+            key="classification_model",
         )
 
 elif ml_category == "🟣 Unsupervised Learning":
     selected_model = st.sidebar.radio(
         "2️⃣ Choose Model",
         ["🎪 K-Means Clustering", "📉 PCA (Dimensionality Reduction)"],
-        key="unsupervised_model"
+        key="unsupervised_model",
     )
 
 # ==========================================
@@ -73,7 +71,7 @@ elif ml_category == "🟣 Unsupervised Learning":
 # ==========================================
 utils.render_header(
     title="🤖 Machine Learning Models",
-    subtitle="Build, train, and evaluate machine learning models for prediction and analysis"
+    subtitle="Build, train, and evaluate machine learning models for prediction and analysis",
 )
 
 # ==========================================
@@ -82,7 +80,7 @@ utils.render_header(
 utils.render_info_box(
     title="About Machine Learning",
     content="Machine learning enables computers to learn patterns from data and make predictions without explicit programming. Explore supervised learning (prediction with labeled data) and unsupervised learning (pattern discovery in unlabeled data).",
-    icon="🔮"
+    icon="🔮",
 )
 
 # ==========================================

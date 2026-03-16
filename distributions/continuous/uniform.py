@@ -34,12 +34,20 @@ def plot_uniform_distribution(a: float, b: float, x: float) -> None:
 
     fig, ax = plt.subplots()
     ax.plot(x_vals, y_vals, label="Uniform Distribution")
-    ax.fill_between(x_vals, 0, y_vals, where=(x_vals <= x), color='blue', alpha=0.3, label=f"Area to the left of x = {x:.2f}")
-    ax.axvline(x=x, color='red', linestyle='--', label=f'x = {x:.2f}')
+    ax.fill_between(
+        x_vals,
+        0,
+        y_vals,
+        where=(x_vals <= x),
+        color="blue",
+        alpha=0.3,
+        label=f"Area to the left of x = {x:.2f}",
+    )
+    ax.axvline(x=x, color="red", linestyle="--", label=f"x = {x:.2f}")
 
-    ax.set_title(f'Uniform Distribution (a={a}, b={b})')
-    ax.set_xlabel('Value')
-    ax.set_ylabel('Probability Density')
+    ax.set_title(f"Uniform Distribution (a={a}, b={b})")
+    ax.set_xlabel("Value")
+    ax.set_ylabel("Probability Density")
     ax.legend()
 
     st.pyplot(fig)
@@ -50,8 +58,12 @@ def main():
 
     st.latex(r"\text{Mean: } \mu = \frac{a + b}{2}")
     st.latex(r"\text{Variance: } \sigma^2 = \frac{(b - a)^2}{12}")
-    st.latex(r"P(a \leq X \leq b) = \int_{a}^{b} \frac{1}{b-a} \, dx = \frac{b - a}{b - a} = 1")
-    st.latex(r"P(x \leq X \leq y) = \int_{x}^{y} \frac{1}{b-a} \, dt = \frac{y - x}{b - a}")
+    st.latex(
+        r"P(a \leq X \leq b) = \int_{a}^{b} \frac{1}{b-a} \, dx = \frac{b - a}{b - a} = 1"
+    )
+    st.latex(
+        r"P(x \leq X \leq y) = \int_{x}^{y} \frac{1}{b-a} \, dt = \frac{y - x}{b - a}"
+    )
 
     a = st.number_input("Enter the Lower Limit (a)", value=0.0, step=0.1)
     b = st.number_input("Enter the Upper Limit (b)", value=1.0, step=0.1)
@@ -61,7 +73,9 @@ def main():
         return
 
     default_x = (a + b) / 2
-    x = st.number_input("Enter the value of x", value=default_x, step=0.1, min_value=a, max_value=b)
+    x = st.number_input(
+        "Enter the value of x", value=default_x, step=0.1, min_value=a, max_value=b
+    )
 
     mean, std_dev = calculate_uniform_distribution_stats(a, b)
 

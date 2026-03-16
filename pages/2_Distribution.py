@@ -20,10 +20,10 @@ st.set_page_config(
     initial_sidebar_state="expanded",
     layout="wide",
     menu_items={
-        'Get Help': 'https://www.linkedin.com/in/minhbphamm/',
-        'Report a bug': "https://www.linkedin.com/in/minhbphamm/",
-        'About': "# Comprehensive Statistics Calculator"
-    }
+        "Get Help": "https://www.linkedin.com/in/minhbphamm/",
+        "Report a bug": "https://www.linkedin.com/in/minhbphamm/",
+        "About": "# Comprehensive Statistics Calculator",
+    },
 )
 
 # Apply custom CSS styling
@@ -39,7 +39,7 @@ st.sidebar.header("📊 Distribution Types")
 topic = st.sidebar.radio(
     "Choose a statistical topic",
     ("🔢 Discrete Distributions", "📈 Continuous Distributions"),
-    key="dist_type"
+    key="dist_type",
 )
 
 option = None
@@ -49,13 +49,18 @@ if topic == "🔢 Discrete Distributions":
     option = st.sidebar.radio(
         "Discrete Distributions",
         ["Binomial Distribution", "Probability Distribution", "Poisson Distribution"],
-        key="discrete_option"
+        key="discrete_option",
     )
 elif topic == "📈 Continuous Distributions":
     option = st.sidebar.radio(
         "Continuous Distributions",
-        ["Normal Distribution", "Triangular Distribution", "Uniform Distribution", "Exponential Distribution"],
-        key="continuous_option"
+        [
+            "Normal Distribution",
+            "Triangular Distribution",
+            "Uniform Distribution",
+            "Exponential Distribution",
+        ],
+        key="continuous_option",
     )
 
 # ==========================================
@@ -63,7 +68,7 @@ elif topic == "📈 Continuous Distributions":
 # ==========================================
 utils.render_header(
     title="📊 Probability Distributions",
-    subtitle="Understand and visualize discrete and continuous probability distributions"
+    subtitle="Understand and visualize discrete and continuous probability distributions",
 )
 
 # ==========================================
@@ -72,7 +77,7 @@ utils.render_header(
 utils.render_info_box(
     title="About Probability Distributions",
     content="Probability distributions describe how values of a random variable are distributed. They are fundamental to statistics and help model real-world phenomena. Explore both discrete (e.g., Binomial, Poisson) and continuous (e.g., Normal, Uniform) distributions.",
-    icon="📐"
+    icon="📐",
 )
 
 utils.render_section_divider()
@@ -83,7 +88,7 @@ utils.render_section_divider()
 if topic == "🔢 Discrete Distributions":
     st.markdown("### 🔢 Discrete Distributions")
     col1, col2, col3 = st.columns(3)
-    
+
     with col1:
         st.markdown(
             """
@@ -101,7 +106,7 @@ if topic == "🔢 Discrete Distributions":
             """,
             unsafe_allow_html=True,
         )
-    
+
     with col2:
         st.markdown(
             """
@@ -119,7 +124,7 @@ if topic == "🔢 Discrete Distributions":
             """,
             unsafe_allow_html=True,
         )
-    
+
     with col3:
         st.markdown(
             """
@@ -141,7 +146,7 @@ if topic == "🔢 Discrete Distributions":
 else:
     st.markdown("### 📈 Continuous Distributions")
     col1, col2 = st.columns(2)
-    
+
     with col1:
         col1a, col1b = st.columns(2)
         with col1a:
@@ -178,7 +183,7 @@ else:
                 """,
                 unsafe_allow_html=True,
             )
-    
+
     with col2:
         col2a, col2b = st.columns(2)
         with col2a:

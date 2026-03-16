@@ -14,8 +14,8 @@ def gradient_descent(X, y, learning_rate=0.01, iterations=100):
     for _ in range(iterations):
         y_pred = m * X + b
         # Calculate gradients
-        dm = (-2/n) * np.sum(X * (y - y_pred))
-        db = (-2/n) * np.sum(y - y_pred)
+        dm = (-2 / n) * np.sum(X * (y - y_pred))
+        db = (-2 / n) * np.sum(y - y_pred)
         # Update m and b
         m -= learning_rate * dm
         b -= learning_rate * db
@@ -24,8 +24,9 @@ def gradient_descent(X, y, learning_rate=0.01, iterations=100):
         # Save history of m, b, and cost
         history.append((m, b))
         cost_history.append(cost)
-    
+
     return history, cost_history
+
 
 def main():
     st.title("Gradient Descent Visualization")
@@ -40,8 +41,12 @@ def main():
     st.latex(r"J(m, b) = \frac{1}{n} \sum_{i=1}^{n} \left( y_i - (mx_i + b) \right)^2")
 
     # Gradients with respect to m and b
-    st.latex(r"\frac{\partial J}{\partial m} = -\frac{2}{n} \sum_{i=1}^{n} x_i (y_i - (mx_i + b))")
-    st.latex(r"\frac{\partial J}{\partial b} = -\frac{2}{n} \sum_{i=1}^{n} (y_i - (mx_i + b))")
+    st.latex(
+        r"\frac{\partial J}{\partial m} = -\frac{2}{n} \sum_{i=1}^{n} x_i (y_i - (mx_i + b))"
+    )
+    st.latex(
+        r"\frac{\partial J}{\partial b} = -\frac{2}{n} \sum_{i=1}^{n} (y_i - (mx_i + b))"
+    )
 
     # Gradient descent update rule
     st.latex(r"m := m - \alpha \frac{\partial J}{\partial m}")
@@ -57,10 +62,12 @@ def main():
 
     # Initial figure and axis
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
-    
+
     # Scatter plot of the data points
-    ax1.scatter(X, y, color='blue', label="Data points")
-    line, = ax1.plot(X, np.zeros_like(X), color='red', label="Fitted line")  # Initial empty line
+    ax1.scatter(X, y, color="blue", label="Data points")
+    (line,) = ax1.plot(
+        X, np.zeros_like(X), color="red", label="Fitted line"
+    )  # Initial empty line
     ax1.set_title("Linear Regression with Gradient Descent")
     ax1.set_xlabel("X")
     ax1.set_ylabel("Y")
@@ -70,14 +77,18 @@ def main():
     ax2.set_title("Loss Function over Iterations")
     ax2.set_xlabel("Iterations")
     ax2.set_ylabel("Cost")
-    cost_plot, = ax2.plot([], [], color='green')
+    (cost_plot,) = ax2.plot([], [], color="green")
 
     # Initialize the plot in Streamlit (create a single placeholder for the plot)
     plot_placeholder = st.pyplot(fig)
 
     # User inputs for gradient descent
-    learning_rate = st.slider("Select Learning Rate", min_value=0.001, max_value=0.1, value=0.01, step=0.001)
-    iterations = st.slider("Select Number of Iterations", min_value=1, max_value=100, value=50, step=1)
+    learning_rate = st.slider(
+        "Select Learning Rate", min_value=0.001, max_value=0.1, value=0.01, step=0.001
+    )
+    iterations = st.slider(
+        "Select Number of Iterations", min_value=1, max_value=100, value=50, step=1
+    )
 
     if st.button("Run Gradient Descent"):
         # Run gradient descent
@@ -109,6 +120,7 @@ def main():
     - **∂J/∂m** and **∂J/∂b**: Gradients of the cost function with respect to the slope (m) and intercept (b).
     - **Gradient Descent Update**: Update rules for slope (m) and intercept (b), where α is the learning rate.
     """)
+
 
 if __name__ == "__main__":
     main()

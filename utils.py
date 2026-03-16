@@ -471,7 +471,7 @@ def render_footer():
 def render_header(title, subtitle=""):
     """
     Renders a professional page header
-    
+
     Args:
         title (str): Main title
         subtitle (str): Optional subtitle
@@ -480,7 +480,7 @@ def render_header(title, subtitle=""):
         f"""
         <div style="margin-bottom: 30px;">
             <h1>{title}</h1>
-            {f'<p style="color: #94A3B8; font-size: 1.1rem; margin-top: 10px;">{subtitle}</p>' if subtitle else ''}
+            {f'<p style="color: #94A3B8; font-size: 1.1rem; margin-top: 10px;">{subtitle}</p>' if subtitle else ""}
         </div>
         """,
         unsafe_allow_html=True,
@@ -490,15 +490,17 @@ def render_header(title, subtitle=""):
 def render_info_box(title, content, icon="ℹ️"):
     """
     Renders a styled info box
-    
+
     Args:
         title (str): Box title
         content (str): Box content (plain text only, no HTML)
         icon (str): Emoji icon
     """
     # Escape HTML special characters
-    content_safe = content.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-    
+    content_safe = (
+        content.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    )
+
     st.markdown(
         f"""
         <div style="background: linear-gradient(145deg, rgba(0, 174, 239, 0.1), rgba(0, 174, 239, 0.05)); border-left: 4px solid #00AEEF; border-radius: 12px; padding: 20px; margin: 15px 0;">
@@ -517,7 +519,7 @@ def render_info_box(title, content, icon="ℹ️"):
 def render_kpi_cards(kpi_data):
     """
     Renders KPI cards in a grid
-    
+
     Args:
         kpi_data (list): List of dicts with keys: label, value, icon
     """
@@ -525,8 +527,7 @@ def render_kpi_cards(kpi_data):
     for col, kpi in zip(cols, kpi_data):
         with col:
             st.metric(
-                label=f"{kpi.get('icon', '📊')} {kpi['label']}",
-                value=kpi['value']
+                label=f"{kpi.get('icon', '📊')} {kpi['label']}", value=kpi["value"]
             )
 
 
@@ -547,8 +548,10 @@ def render_section_divider():
 
 def render_warning_box(title, content):
     """Renders a styled warning box"""
-    content_safe = content.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-    
+    content_safe = (
+        content.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    )
+
     st.markdown(
         f"""
         <div style="background: linear-gradient(145deg, rgba(250, 204, 21, 0.1), rgba(250, 204, 21, 0.05)); border-left: 4px solid #FACC15; border-radius: 12px; padding: 20px; margin: 15px 0;">
@@ -566,8 +569,10 @@ def render_warning_box(title, content):
 
 def render_success_box(title, content):
     """Renders a styled success box"""
-    content_safe = content.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-    
+    content_safe = (
+        content.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    )
+
     st.markdown(
         f"""
         <div style="background: linear-gradient(145deg, rgba(74, 222, 128, 0.1), rgba(74, 222, 128, 0.05)); border-left: 4px solid #4ADE80; border-radius: 12px; padding: 20px; margin: 15px 0;">
@@ -586,7 +591,7 @@ def render_success_box(title, content):
 def render_logo_header(image_path, app_name, creator=""):
     """
     Renders a professional logo + header
-    
+
     Args:
         image_path (str): Path to logo image (not used, kept for compatibility)
         app_name (str): Application name

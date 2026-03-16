@@ -4,30 +4,34 @@ import streamlit as st
 
 
 def plot_probability_convergence(ax, probabilities):
-    ax.plot(probabilities, color='blue', label='Observed Probability')
-    ax.axhline(y=0.5, color='red', linestyle='--', label='True Probability (0.5)')
-    ax.set_title('Convergence of Coin Flip Probability to 0.5')
-    ax.set_xlabel('Number of Coin Flips')
-    ax.set_ylabel('Probability of Heads')
+    ax.plot(probabilities, color="blue", label="Observed Probability")
+    ax.axhline(y=0.5, color="red", linestyle="--", label="True Probability (0.5)")
+    ax.set_title("Convergence of Coin Flip Probability to 0.5")
+    ax.set_xlabel("Number of Coin Flips")
+    ax.set_ylabel("Probability of Heads")
     ax.legend()
+
 
 def simulate_coin_flips(num_flips):
     return np.random.choice([0, 1], size=num_flips)
+
 
 def calculate_cumulative_probabilities(flips):
     cumulative_heads = np.cumsum(flips)
     return cumulative_heads / (np.arange(1, len(flips) + 1))
 
+
 def main():
     st.title("Law of Large Numbers Demonstration")
 
-    st.markdown('''
+    st.markdown(
+        """
     <style>
     .katex-html {
         text-align: left;
     }
-    </style>''',
-    unsafe_allow_html=True
+    </style>""",
+        unsafe_allow_html=True,
     )
 
     st.latex(r"""
@@ -58,7 +62,10 @@ def main():
     plot_probability_convergence(ax, cumulative_probabilities)
     st.pyplot(fig)
 
-    st.write(f"Final observed probability after {num_flips} flips: {cumulative_probabilities[-1]:.4f}")
+    st.write(
+        f"Final observed probability after {num_flips} flips: {cumulative_probabilities[-1]:.4f}"
+    )
+
 
 if __name__ == "__main__":
     main()

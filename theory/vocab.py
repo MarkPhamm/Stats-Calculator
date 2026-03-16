@@ -12,7 +12,7 @@ def main():
     """)
 
     st.header("Types of Statistics")
-    
+
     st.subheader("1. Descriptive Statistics")
     st.write("""
     Descriptive statistics focuses on:
@@ -47,7 +47,7 @@ def main():
     """)
 
     st.header("Key Statistics Concepts")
-    
+
     st.subheader("1. Population and Parameters")
     st.write("""
     - Population: The entire group of interest in a statistical study
@@ -124,6 +124,7 @@ def main():
     - -1: Perfect negative linear relationship
     - 0: No linear relationship
     """)
+
 
 if __name__ == "__main__":
     main()

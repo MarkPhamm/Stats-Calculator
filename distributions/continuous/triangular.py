@@ -4,7 +4,9 @@ import streamlit as st
 from scipy.stats import triang
 
 
-def calculate_triangular_distribution_stats(a: float, b: float, c: float) -> tuple[float, float, float]:
+def calculate_triangular_distribution_stats(
+    a: float, b: float, c: float
+) -> tuple[float, float, float]:
     """
     Calculate mean, standard deviation, and skewness for a triangular distribution.
 
@@ -17,9 +19,11 @@ def calculate_triangular_distribution_stats(a: float, b: float, c: float) -> tup
         tuple: Mean, standard deviation, and skewness.
     """
     mean = (a + b + c) / 3
-    variance = (a**2 + b**2 + c**2 - a*b - a*c - b*c) / 18
+    variance = (a**2 + b**2 + c**2 - a * b - a * c - b * c) / 18
     std_dev = np.sqrt(variance)
-    skew = (np.sqrt(2) * (a + b - 2*c) * (2*a - b - c) * (a - 2*b + c)) / (5 * variance**(3/2))
+    skew = (np.sqrt(2) * (a + b - 2 * c) * (2 * a - b - c) * (a - 2 * b + c)) / (
+        5 * variance ** (3 / 2)
+    )
     return mean, std_dev, skew
 
 
@@ -40,12 +44,20 @@ def plot_triangular_distribution(a: float, b: float, c: float, x: float) -> None
 
     fig, ax = plt.subplots()
     ax.plot(x_vals, y_vals, label="Triangular Distribution")
-    ax.fill_between(x_vals, 0, y_vals, where=(x_vals <= x), color='blue', alpha=0.3, label=f"Area to the left of x = {x:.2f}")
-    ax.axvline(x=x, color='red', linestyle='--', label=f'x = {x:.2f}')
+    ax.fill_between(
+        x_vals,
+        0,
+        y_vals,
+        where=(x_vals <= x),
+        color="blue",
+        alpha=0.3,
+        label=f"Area to the left of x = {x:.2f}",
+    )
+    ax.axvline(x=x, color="red", linestyle="--", label=f"x = {x:.2f}")
 
-    ax.set_title(f'Triangular Distribution (a={a}, b={b}, c={c})')
-    ax.set_xlabel('Value')
-    ax.set_ylabel('Probability Density')
+    ax.set_title(f"Triangular Distribution (a={a}, b={b}, c={c})")
+    ax.set_xlabel("Value")
+    ax.set_ylabel("Probability Density")
     ax.legend()
 
     st.pyplot(fig)
@@ -77,7 +89,9 @@ def main():
         return
 
     default_x = (a + b) / 2
-    x = st.number_input("Enter the value of x", value=default_x, step=0.1, min_value=a, max_value=b)
+    x = st.number_input(
+        "Enter the value of x", value=default_x, step=0.1, min_value=a, max_value=b
+    )
 
     mean, std_dev, skew = calculate_triangular_distribution_stats(a, b, c)
 
@@ -89,7 +103,7 @@ def main():
     st.write(f"Skewness: {skew:.4f}")
     st.write(f"Height at x (f(x)): {f_x:.4f}")
     st.write(f"Cumulative Probability P(X < x): {p_x:.4f}")
-    st.write(f"Cumulative Probability P(X >= x): {1-p_x:.4f}")
+    st.write(f"Cumulative Probability P(X >= x): {1 - p_x:.4f}")
 
     plot_triangular_distribution(a, b, c, x)
 
