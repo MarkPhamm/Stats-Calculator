@@ -1,8 +1,8 @@
 import streamlit as st
-import utils
 
 import moe.moe
 import moe.moe_inverse
+import utils
 
 # Set up Streamlit page configuration
 st.set_page_config(

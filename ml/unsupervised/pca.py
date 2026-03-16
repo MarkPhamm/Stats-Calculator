@@ -1,10 +1,11 @@
-import streamlit as st
-import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 import seaborn as sns
+import streamlit as st
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
+
 
 def main():
     st.title("Principal Component Analysis (PCA)")

@@ -1,6 +1,7 @@
-import streamlit as st
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import streamlit as st
+
 
 def plot_probability_convergence(ax, probabilities):
     ax.plot(probabilities, color='blue', label='Observed Probability')

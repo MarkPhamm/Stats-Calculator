@@ -1,6 +1,7 @@
 import streamlit as st
 from scipy import stats
 
+
 def main():
     def calculate_n_mean_known(z_score, std_dev, moe):
         return (z_score * std_dev / moe) ** 2

@@ -1,5 +1,6 @@
 import streamlit as st
 
+
 def main():
     # Title of the app
     st.title("Fundamental Probability Rules and Concepts")

@@ -1,10 +1,11 @@
-import streamlit as st
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.datasets import make_blobs
+import streamlit as st
 from sklearn.cluster import KMeans
+from sklearn.datasets import make_blobs
 from sklearn.metrics import silhouette_score
+
 
 # ==========================================
 # HELPER: K-Means Algorithm (For Tab 1)

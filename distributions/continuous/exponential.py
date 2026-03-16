@@ -1,7 +1,8 @@
+import matplotlib.pyplot as plt
+import numpy as np
 import streamlit as st
 from scipy import stats
-import numpy as np
-import matplotlib.pyplot as plt
+
 
 def plot_exponential_distribution(rate, x, y=None):
     lower_bound = 0

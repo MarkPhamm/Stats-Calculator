@@ -1,8 +1,9 @@
-import streamlit as st
 import math
-from scipy import stats
-import numpy as np
+
 import matplotlib.pyplot as plt
+import numpy as np
+import streamlit as st
+from scipy import stats
 
 
 def plot_normal_distribution(mean, std_dev, x, y=None, sample_size=None, population=True):

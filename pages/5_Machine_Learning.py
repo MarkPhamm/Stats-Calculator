@@ -1,9 +1,10 @@
 import streamlit as st
+
 import utils
+from ml.supervised.classification import decision_tree, logistic_reg
 
 # Import machine learning modules
 from ml.supervised.regression import linear_reg
-from ml.supervised.classification import logistic_reg, decision_tree
 from ml.unsupervised import kmeans, pca
 
 # Set up Streamlit page configuration

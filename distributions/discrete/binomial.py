@@ -1,7 +1,8 @@
-import streamlit as st
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import streamlit as st
 from scipy.stats import binom
+
 
 def calculate_binomial_distribution_stats(n: int, p: float) -> tuple[float, float]:
     """

@@ -1,9 +1,10 @@
-import streamlit as st
-import plotly.express as px
-import plotly.graph_objects as go
 import numpy as np
 import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+import streamlit as st
 from scipy.stats import gaussian_kde
+
 
 def create_histogram():
     n_points = st.slider("Number of data points:", 100, 5000, 1000, key="hist_n_points")

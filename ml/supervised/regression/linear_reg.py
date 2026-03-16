@@ -1,11 +1,12 @@
-import streamlit as st
-import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 import statsmodels.api as sm
-from sklearn.model_selection import train_test_split
+import streamlit as st
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.model_selection import train_test_split
+
 
 # ==========================================
 # HELPER: Gradient Descent Function (For Tab 1)

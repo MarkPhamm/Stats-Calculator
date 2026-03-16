@@ -1,7 +1,8 @@
-import streamlit as st
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 import seaborn as sns
+import streamlit as st
+
 
 def plot_distribution(ax, data, title, color='blue'):
     sns.histplot(data, kde=True, color=color, ax=ax, bins=30)

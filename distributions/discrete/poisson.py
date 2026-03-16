@@ -1,7 +1,8 @@
-import streamlit as st
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import streamlit as st
 from scipy.stats import poisson
+
 
 def calculate_poisson_distribution_stats(lam: float) -> tuple[float, float]:
     """

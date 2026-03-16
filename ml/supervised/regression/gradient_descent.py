@@ -1,6 +1,7 @@
-import streamlit as st
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import streamlit as st
+
 
 # Gradient Descent Algorithm for Linear Regression
 def gradient_descent(X, y, learning_rate=0.01, iterations=100):

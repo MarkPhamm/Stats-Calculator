@@ -1,7 +1,8 @@
-import streamlit as st
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import streamlit as st
 from scipy.stats import norm
+
 
 def plot_normal_distribution(mean, std_dev, percentages):
     x = np.linspace(mean - 4*std_dev, mean + 4*std_dev, 1000)

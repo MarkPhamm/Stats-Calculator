@@ -1,16 +1,17 @@
 import streamlit as st
-import utils
 
-# Import discrete distribution modules
-import distributions.discrete.probability
-import distributions.discrete.binomial
-import distributions.discrete.poisson
+import distributions.continuous.exponential
 
 # Import continuous distribution modules
 import distributions.continuous.normal
 import distributions.continuous.triangular
 import distributions.continuous.uniform
-import distributions.continuous.exponential
+import distributions.discrete.binomial
+import distributions.discrete.poisson
+
+# Import discrete distribution modules
+import distributions.discrete.probability
+import utils
 
 # Set up Streamlit page configuration
 st.set_page_config(

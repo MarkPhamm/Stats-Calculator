@@ -1,8 +1,9 @@
-import streamlit as st
-import pandas as pd
-import numpy as np
-import scipy.stats as stats
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import scipy.stats as stats
+import streamlit as st
+
 
 def chi_square_goodness_of_fit(observed, expected):
     """Perform Chi-Square Goodness of Fit test."""

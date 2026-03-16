@@ -1,17 +1,18 @@
 import streamlit as st
-import utils
 
-# Import theory modules
-import theory.chart
-import theory.vocab
+import probability.monty_hall
+
+# Import probability modules
+import probability.probability
 
 # Import theorem modules
 import theorem.clt
 import theorem.llon
 
-# Import probability modules
-import probability.probability
-import probability.monty_hall
+# Import theory modules
+import theory.chart
+import theory.vocab
+import utils
 
 # Set up Streamlit page configuration
 st.set_page_config(

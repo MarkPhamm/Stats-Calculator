@@ -1,10 +1,11 @@
 import streamlit as st
-import utils
+
+import hypothesis_test.anova
+import hypothesis_test.chi_square
 
 # Import hypothesis test modules
 import hypothesis_test.hypothesis_test
-import hypothesis_test.chi_square
-import hypothesis_test.anova
+import utils
 
 # Set up Streamlit page configuration
 st.set_page_config(

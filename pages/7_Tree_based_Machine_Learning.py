@@ -1,7 +1,8 @@
+import os
+import sys
+
 import pandas as pd
 import streamlit as st
-import sys
-import os
 
 # Allow imports from project root
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
