@@ -1,11 +1,11 @@
-import streamlit as st
-import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 import seaborn as sns
+import streamlit as st
 from sklearn.datasets import make_classification
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report, mean_squared_error, r2_score
+from sklearn.model_selection import train_test_split
 
 try:
     import xgboost as xgb
@@ -58,7 +58,7 @@ def main():
             X1_tr, X1_te, y1_tr, y1_te = train_test_split(X1, y1, test_size=0.25, random_state=42)
             m1 = xgb.XGBClassifier(n_estimators=n_est_1, learning_rate=lr_1, max_depth=depth_1,
                                     subsample=subsamp, eval_metric="logloss",
-                                    random_state=42, verbosity=0, use_label_encoder=False)
+                                    random_state=42, verbosity=0)
             m1.fit(X1_tr, y1_tr,
                    eval_set=[(X1_tr, y1_tr), (X1_te, y1_te)], verbose=False)
             res = m1.evals_result()
@@ -95,12 +95,12 @@ def main():
             l1_accs, l2_accs = [], []
             for a in alphas:
                 m_l1 = xgb.XGBClassifier(n_estimators=n_est_2, reg_alpha=float(a), reg_lambda=0.0,
-                                          verbosity=0, random_state=42, use_label_encoder=False)
+                                          verbosity=0, random_state=42)
                 m_l1.fit(X2_tr, y2_tr)
                 l1_accs.append(accuracy_score(y2_te, m_l1.predict(X2_te)))
 
                 m_l2 = xgb.XGBClassifier(n_estimators=n_est_2, reg_alpha=0.0, reg_lambda=float(a),
-                                          verbosity=0, random_state=42, use_label_encoder=False)
+                                          verbosity=0, random_state=42)
                 m_l2.fit(X2_tr, y2_tr)
                 l2_accs.append(accuracy_score(y2_te, m_l2.predict(X2_te)))
 
@@ -152,7 +152,7 @@ def main():
                     model = xgb.XGBClassifier(n_estimators=n_est, learning_rate=lr_val,
                                               max_depth=max_d, subsample=sub,
                                               reg_alpha=reg_alpha, reg_lambda=reg_lambda,
-                                              random_state=42, verbosity=0, use_label_encoder=False,
+                                              random_state=42, verbosity=0,
                                               eval_metric="logloss")
                     model.fit(X_tr, y_tr, eval_set=[(X_tr, y_tr), (X_te, y_te)], verbose=False)
                     y_pred = model.predict(X_te)
